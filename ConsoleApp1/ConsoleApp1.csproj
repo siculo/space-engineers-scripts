@@ -112,14 +112,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\BatteryInfo.cs" />
+    <Compile Include="Abstractions\ControlPanel.cs" />
+    <Compile Include="Abstractions\Flag.cs" />
+    <Compile Include="Abstractions\Menu.cs" />
+    <Compile Include="Abstractions\MenuItem.cs" />
     <Compile Include="Game\Airlock.cs" />
-    <Compile Include="Abstractions\ControlPanel\ControlPanel.cs" />
-    <Compile Include="Abstractions\ControlPanel\Flag.cs" />
-    <Compile Include="Abstractions\ControlPanel\Menu.cs" />
-    <Compile Include="Abstractions\ControlPanel\MenuItem.cs" />
-    <Compile Include="Game\ControlPanel\Command.cs" />
+    <Compile Include="Game\BlockSwitcher.cs" />
+    <Compile Include="Game\Command.cs" />
     <Compile Include="Game\MyBatteryInfo.cs" />
     <Compile Include="Programs\AirlockProgram.cs" />
+    <Compile Include="Programs\ControlPanelProgram.cs" />
     <Compile Include="Programs\GameProgram.cs" />
     <Compile Include="Tools\EnergyDisplay.cs" />
     <Compile Include="Tools\SpinningBar.cs" />

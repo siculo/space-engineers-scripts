@@ -53,25 +53,5 @@ namespace IngameScript
         {
 
         }
-
-        [TestMethod]
-        public void TestMethod3()
-        {
-            IMyGridTerminalSystem GridTerminalSystem = null;
-            IMyProgrammableBlock Me = null;
-
-            MyIni _ini = new MyIni();
-            MyIniParseResult result;
-            if (!_ini.TryParse(Me.CustomData, out result))
-            {
-                Echo("c'è un problema: " + result.Success + " " + result.Error);
-            }
-            else
-            {
-                System.Collections.Generic.List<IMyAirVent> airlocks = new System.Collections.Generic.List<IMyAirVent>();
-                Echo(_ini.Get("main", "sample").ToString());
-                GridTerminalSystem.GetBlocksOfType<IMyAirVent>(airlocks, airlock => MyIni.HasSection(airlock.CustomData, "airlock"));
-            }
-        }
     }
 }

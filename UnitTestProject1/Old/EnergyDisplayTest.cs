@@ -46,11 +46,11 @@ namespace IngameScript
             EnergyDisplay display = new EnergyDisplay(34, 18);
             string result = display.Show(new TestBatteryInfo("batteria_1", 3.0f, 2.3f, -317.29f), new TestBatteryInfo("batteria_2", 6.2f, 0f, 0f));
             string expected =
-                "[ batteria_1 - ]" + NL +
+                "[batteria_1 -]" + NL +
                 "----------------------------------" + NL +
                 "3Mhw | I/O = -317.29w" + NL +
                 "(||||||||||||||....) 77%, 2.3Mhw" + NL + NL +
-                "[ batteria_2 - ]" + NL +
+                "[batteria_2 -]" + NL +
                 "----------------------------------" + NL +
                 "6.2Mhw | I/O = 0w" + NL +
                 "(..................) 0%, 0Mhw";
