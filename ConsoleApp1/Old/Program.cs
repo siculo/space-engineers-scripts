@@ -43,7 +43,7 @@ namespace IngameScript
       display = GridTerminalSystem.GetBlockWithName("L5_Console_Display") as IMyTextPanel;
       serverAirlock = GridTerminalSystem.GetBlockWithName("L5_Server_Airlocks") as IMyProgrammableBlock;
       Menu menu = new Menu("Main");
-      Menu submenu = new Menu("Airlocks", menu);
+      Menu submenu = new Menu("Airlocks");
       foreach(string name in airlockNames) {
         submenu.AddItem(new Command("Exit " + name, serverAirlock, "exit " + name));
         submenu.AddItem(new Command("Enter " + name, serverAirlock, "enter " + name));
@@ -69,7 +69,6 @@ namespace IngameScript
       }
       display.WritePublicText(panel.ToString());
     }
-
 
     // --------------------------------
     #region post-script

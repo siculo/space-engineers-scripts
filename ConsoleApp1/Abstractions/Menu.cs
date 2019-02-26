@@ -9,15 +9,9 @@
     private int selectedCommandIndex = 0;
     private int topVisibleCommand = 0;
 
-    private readonly Menu parent;
-
     private ControlPanel panel = null;
 
-    public Menu(string name, Menu parent) : base(name) {
-      this.parent = parent;
-    }
-
-    public Menu(string name) : this(name, null) {
+    public Menu(string name) : base(name) {
     }
 
     public void AddItem(MenuItem item) {
@@ -25,6 +19,7 @@
       if(_selectedItem == null) {
         _selectedItem = item;
       }
+      item.Parent = this;
     }
 
     public void SetControlPanel(ControlPanel p) {
@@ -32,7 +27,7 @@
     }
 
     public ControlPanel GetControlPanel() {
-      return parent != null ? parent.GetControlPanel() : panel;
+      return Parent != null ? Parent.GetControlPanel() : panel;
     }
 
     public void SelectNext() {
@@ -70,8 +65,8 @@
     }
 
     public void ActivateParent() {
-      if(parent != null) {
-        GetControlPanel().SetMenu(parent);
+      if(Parent != null) {
+        GetControlPanel().SetMenu(Parent);
       }
     }
 
@@ -101,8 +96,8 @@
     }
 
     private string GetPath() {
-      if(parent != null) {
-        return parent.GetPath() + "/" + this.name;
+      if(Parent != null) {
+        return Parent.GetPath() + "/" + this.name;
       } else {
         return this.name;
       }
