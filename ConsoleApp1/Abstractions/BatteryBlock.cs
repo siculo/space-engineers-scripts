@@ -1,7 +1,7 @@
 ﻿namespace IngameScript
 {
   // --------------------------------
-  public abstract class BatteryInfo
+  public abstract class BatteryBlock
   {
     public abstract string Name { get; }
     public abstract float Storage { get; }

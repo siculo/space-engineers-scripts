@@ -111,7 +111,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\BatteryInfo.cs" />
+    <Compile Include="Abstractions\BatteryBlock.cs" />
     <Compile Include="Abstractions\ControlPanel.cs" />
     <Compile Include="Abstractions\Flag.cs" />
     <Compile Include="Abstractions\Menu.cs" />
@@ -119,7 +119,7 @@
     <Compile Include="Game\Airlock.cs" />
     <Compile Include="Game\BlockSwitcher.cs" />
     <Compile Include="Game\Command.cs" />
-    <Compile Include="Game\MyBatteryInfo.cs" />
+    <Compile Include="Game\MyBatteryBlock.cs" />
     <Compile Include="Programs\AirlockProgram.cs" />
     <Compile Include="Programs\ControlPanelProgram.cs" />
     <Compile Include="Programs\GameProgram.cs" />

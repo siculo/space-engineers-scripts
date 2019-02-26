@@ -7,14 +7,14 @@ namespace IngameScript.EnergyDisplayProgram
   {
     // --------------------------------
     EnergyDisplay display = new EnergyDisplay(34, 16);
-    BatteryInfo[] batteryInfo;
+    BatteryBlock[] batteryInfo;
 
     public Program() {
-      batteryInfo = new BatteryInfo[] {
-                MyBatteryInfo.Find(GridTerminalSystem, "Batteria_1"),
-                MyBatteryInfo.Find(GridTerminalSystem, "Batteria_2"),
-                MyBatteryInfo.Find(GridTerminalSystem, "Batteria_3"),
-                MyBatteryInfo.Find(GridTerminalSystem, "Batteria_4")
+      batteryInfo = new BatteryBlock[] {
+                MyBatteryBlock.Find(GridTerminalSystem, "Batteria_1"),
+                MyBatteryBlock.Find(GridTerminalSystem, "Batteria_2"),
+                MyBatteryBlock.Find(GridTerminalSystem, "Batteria_3"),
+                MyBatteryBlock.Find(GridTerminalSystem, "Batteria_4")
             };
       Runtime.UpdateFrequency = UpdateFrequency.Update100;
     }

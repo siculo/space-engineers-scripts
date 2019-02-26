@@ -2,17 +2,16 @@
 
 namespace IngameScript
 {
-  // --------------------------------
-  public class MyBatteryInfo:BatteryInfo
+  public class MyBatteryBlock: BatteryBlock
   {
     private readonly IMyBatteryBlock _battery;
     private readonly string _displayName;
 
-    public static MyBatteryInfo Find(IMyGridTerminalSystem gts,string name) {
-      return new MyBatteryInfo(gts.GetBlockWithName(name) as IMyBatteryBlock,name);
+    public static MyBatteryBlock Find(IMyGridTerminalSystem gts, string name) {
+      return new MyBatteryBlock(gts.GetBlockWithName(name) as IMyBatteryBlock, name);
     }
 
-    public MyBatteryInfo(IMyBatteryBlock battery,string displayName) {
+    public MyBatteryBlock(IMyBatteryBlock battery, string displayName) {
       _battery = battery;
       _displayName = displayName;
     }

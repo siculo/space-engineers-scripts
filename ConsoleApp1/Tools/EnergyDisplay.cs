@@ -17,11 +17,11 @@ namespace IngameScript
       _batteryChargeWidth = batteryChargeWidth;
     }
 
-    public string Show(params BatteryInfo[] batteries) {
+    public string Show(params BatteryBlock[] batteries) {
       System.Text.StringBuilder result = new System.Text.StringBuilder();
       result.AppendLine("[Energia]");
       result.Append(_horizontalRow);
-      foreach(BatteryInfo battery in batteries) {
+      foreach(BatteryBlock battery in batteries) {
         string runStatus = battery.Enabled ? "[" + spinningBar.ToString() + "]" : "OFF";
         string charging = battery.Charging ? "IN" : "OUT";
         result.AppendLine();

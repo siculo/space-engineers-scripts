@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IngameScript
 {
-  public class TestBatteryInfo: BatteryInfo
+  public class TestEnergyBlock: BatteryBlock
   {
     private readonly string _name;
     private readonly float _storage;
@@ -12,7 +12,7 @@ namespace IngameScript
     private readonly bool _enabled;
     private readonly bool _charging;
 
-    public TestBatteryInfo(string name, float storage, float stored, float balance, bool enabled, bool charging) {
+    public TestEnergyBlock(string name, float storage, float stored, float balance, bool enabled, bool charging) {
       _name = name;
       _storage = storage;
       _stored = stored;
@@ -53,8 +53,8 @@ namespace IngameScript
     public void SomeBatteries() {
       EnergyDisplay display = new EnergyDisplay(34, 18);
       string result = display.Show(
-        new TestBatteryInfo("batteria_1", 3.0f, 2.3f, -317.29f, true, false),
-        new TestBatteryInfo("batteria_2", 6.2f, 0f, 0f, false, true)
+        new TestEnergyBlock("batteria_1", 3.0f, 2.3f, -317.29f, true, false),
+        new TestEnergyBlock("batteria_2", 6.2f, 0f, 0f, false, true)
       );
       string expected =
         "[Energia]" + NL +
