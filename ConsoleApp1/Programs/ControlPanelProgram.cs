@@ -8,6 +8,7 @@ namespace IngameScript.ControlPanelProgram
     ControlPanel panel;
     IMyTextPanel display;
     MyIni _ini = new MyIni();
+    SpinningBar _bar = new SpinningBar();
 
     public Program() {
       MyIniParseResult result;
@@ -17,11 +18,13 @@ namespace IngameScript.ControlPanelProgram
         display = GridTerminalSystem.GetBlockWithName(_ini.Get("config", "monitor").ToString()) as IMyTextPanel;
         panel = new ControlPanel(33, 12);
         Menu menu = new Menu("Main");
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_1") as IMyFunctionalBlock));
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_2") as IMyFunctionalBlock));
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_3") as IMyFunctionalBlock));
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_4") as IMyFunctionalBlock));
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("reattore_piccolo") as IMyFunctionalBlock));
+        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_1") as IMyFunctionalBlock, _bar));
+        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_2") as IMyFunctionalBlock, _bar));
+        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_3") as IMyFunctionalBlock, _bar));
+        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_4") as IMyFunctionalBlock, _bar));
+        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("reattore_piccolo") as IMyFunctionalBlock, _bar));
+        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("raffineria") as IMyFunctionalBlock, _bar));
+        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("assemblatore") as IMyFunctionalBlock, _bar));
         panel.SetMenu(menu);
         display.WritePublicText(panel.ToString());
         Runtime.UpdateFrequency = UpdateFrequency.Update100;
@@ -37,6 +40,8 @@ namespace IngameScript.ControlPanelProgram
         panel.ActivateCurrent();
       } else if(argument == "parent") {
         panel.ActivateParent();
+      } else {
+        _bar.Step();
       }
       display.WritePublicText(panel.ToString());
     }

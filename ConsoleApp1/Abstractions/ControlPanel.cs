@@ -1,49 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-namespace IngameScript
+﻿namespace IngameScript
 {
   public class ControlPanel
   {
-    private Menu menu;
+    private Menu _menu;
 
-    private readonly int width, heigth;
+    private readonly int _width, _heigth;
 
     public int Width {
-      get { return width; }
+      get { return _width; }
     }
 
     public int Heigth {
-      get { return heigth; }
+      get { return _heigth; }
     }
 
     public ControlPanel(int width, int heigth) {
-      this.width = width;
-      this.heigth = heigth;
+      _width = width;
+      _heigth = heigth;
     }
 
     public void SetMenu(Menu menu) {
-      this.menu = menu;
-      menu.SetControlPanel(this);
+      _menu = menu;
+      _menu.SetControlPanel(this);
     }
 
     public void SelectNext() {
-      menu.SelectNext();
+      _menu.SelectNext();
     }
 
     public void SelectPrevious() {
-      menu.SelectPrevious();
+      _menu.SelectPrevious();
     }
 
     public override string ToString() {
-      return this.menu.GetContent();
+      return _menu.GetContent();
     }
 
     public void ActivateCurrent() {
-      menu.ActivateCurrent();
+      _menu.ActivateCurrent();
     }
 
     public void ActivateParent() {
-      menu.ActivateParent();
+      _menu.ActivateParent();
     }
   }
 }
