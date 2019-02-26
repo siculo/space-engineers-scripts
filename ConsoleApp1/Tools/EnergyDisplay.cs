@@ -27,7 +27,7 @@ namespace IngameScript
           result.AppendLine();
           result.AppendLine();
         }
-        result.AppendLine(String.Format("[ {0} {1} ]",battery.name,spinningBar));
+        result.AppendLine(String.Format("[{0} {1}]",battery.name,spinningBar));
         result.AppendLine(_horizontalRow);
         result.AppendLine(String.Format(enUS,"{0}Mhw | I/O = {1}w",Math.Round(battery.storage,2),Math.Round(battery.balance,2)));
         result.Append(String.Format(enUS,"{0} {1}%, {2}Mhw",BarDisplay(battery.storage,battery.stored,_batteryChargeWidth),Math.Round(100f * battery.stored / battery.storage,0),Math.Round(battery.stored,2)));

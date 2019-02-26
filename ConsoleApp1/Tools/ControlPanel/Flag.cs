@@ -2,10 +2,10 @@
 {
   public class Flag: MenuItem
   {
-    private bool on;
+    protected bool on;
 
     public Flag(string name) : base(name) {
-      this.on = false;
+      on = false;
     }
 
     public Flag(string name, bool on) : base(name) {

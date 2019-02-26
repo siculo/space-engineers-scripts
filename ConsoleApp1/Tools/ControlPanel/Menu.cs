@@ -2,10 +2,10 @@
 {
   public class Menu: MenuItem
   {
-    private System.Collections.Generic.List<MenuItem> commands =
+    private System.Collections.Generic.List<MenuItem> _items =
         new System.Collections.Generic.List<MenuItem>();
 
-    private MenuItem selectedCommand = null;
+    private MenuItem _selectedItem = null;
     private int selectedCommandIndex = 0;
     private int topVisibleCommand = 0;
 
@@ -20,10 +20,10 @@
     public Menu(string name) : this(name, null) {
     }
 
-    public void AddCommand(MenuItem command) {
-      commands.Add(command);
-      if(selectedCommand == null) {
-        selectedCommand = command;
+    public void AddItem(MenuItem item) {
+      _items.Add(item);
+      if(_selectedItem == null) {
+        _selectedItem = item;
       }
     }
 
@@ -37,10 +37,10 @@
 
     public void SelectNext() {
       selectedCommandIndex++;
-      if(selectedCommandIndex >= commands.Count) {
+      if(selectedCommandIndex >= _items.Count) {
         selectedCommandIndex = 0;
       }
-      selectedCommand = commands[selectedCommandIndex];
+      _selectedItem = _items[selectedCommandIndex];
       if(selectedCommandIndex >= topVisibleCommand + panel.Heigth) {
         topVisibleCommand++;
       } else if(selectedCommandIndex < topVisibleCommand) {
@@ -51,9 +51,9 @@
     public void SelectPrevious() {
       selectedCommandIndex--;
       if(selectedCommandIndex < 0) {
-        selectedCommandIndex = commands.Count - 1;
+        selectedCommandIndex = _items.Count - 1;
       }
-      selectedCommand = commands[selectedCommandIndex];
+      _selectedItem = _items[selectedCommandIndex];
       if(selectedCommandIndex < topVisibleCommand) {
         topVisibleCommand--;
       } else if(selectedCommandIndex >= topVisibleCommand + panel.Heigth) {
@@ -62,7 +62,7 @@
     }
 
     public void ActivateCurrent() {
-      commands[selectedCommandIndex].Activate();
+      _items[selectedCommandIndex].Activate();
     }
 
     override public void Activate() {
@@ -88,7 +88,7 @@
     }
 
     private string GetHeader() {
-      string row = new string('=', this.panel.Width);
+      string row = new string('-', this.panel.Width);
       if(topVisibleCommand > 0) {
         row = row.Remove(2, 2).Insert(2, "/\\");
       }
@@ -109,8 +109,8 @@
     }
 
     private string GetFooter() {
-      string row = new string('=', this.panel.Width);
-      if(topVisibleCommand + panel.Heigth < commands.Count) {
+      string row = new string('-', this.panel.Width);
+      if(topVisibleCommand + panel.Heigth < _items.Count) {
         row = row.Remove(2, 2).Insert(2, "\\/");
       }
       return row;
@@ -121,8 +121,8 @@
           new System.Collections.Generic.List<string>();
       long bottomLimit = topVisibleCommand + panel.Heigth;
       for(int i = topVisibleCommand; i < bottomLimit; i++) {
-        if(i < commands.Count) {
-          rows.Add(formatCommand(commands[i]));
+        if(i < _items.Count) {
+          rows.Add(formatCommand(_items[i]));
         } else {
           rows.Add("\n");
         }
@@ -131,7 +131,7 @@
     }
 
     private string formatCommand(MenuItem command) {
-      if(command == selectedCommand) {
+      if(command == _selectedItem) {
         return "*" + command.GetLabel();
       } else {
         return " " + command.GetLabel();
