@@ -11,34 +11,30 @@ namespace IngameScript
     private readonly int _batteryChargeWidth;
     private readonly SpinningBar spinningBar = new SpinningBar();
 
-    public EnergyDisplay(int lineWidth,int batteryChargeWidth) {
+    public EnergyDisplay(int lineWidth, int batteryChargeWidth) {
       _lineWidth = lineWidth;
-      _horizontalRow = new String('-',lineWidth);
+      _horizontalRow = new String('-', lineWidth);
       _batteryChargeWidth = batteryChargeWidth;
     }
 
     public string Show(params BatteryInfo[] batteries) {
       System.Text.StringBuilder result = new System.Text.StringBuilder();
-      bool first = true;
+      result.AppendLine("[Energia]");
+      result.Append(_horizontalRow);
       foreach(BatteryInfo battery in batteries) {
-        if(first) {
-          first = false;
-        } else {
-          result.AppendLine();
-          result.AppendLine();
-        }
-        result.AppendLine(String.Format("[{0} {1}]",battery.name,spinningBar));
-        result.AppendLine(_horizontalRow);
-        result.AppendLine(String.Format(enUS,"{0}Mhw | I/O = {1}w",Math.Round(battery.storage,2),Math.Round(battery.balance,2)));
-        result.Append(String.Format(enUS,"{0} {1}%, {2}Mhw",BarDisplay(battery.storage,battery.stored,_batteryChargeWidth),Math.Round(100f * battery.stored / battery.storage,0),Math.Round(battery.stored,2)));
+        string runStatus = battery.Enabled ? "[" + spinningBar.ToString() + "]" : "OFF";
+        string charging = battery.Charging ? "IN" : "OUT";
+        result.AppendLine();
+        result.AppendLine(String.Format(enUS, "{0} {1} {2}Mhw {3} {4}w", battery.Name, runStatus, Math.Round(battery.Storage, 2), charging, Math.Round(battery.Balance, 2)));
+        result.Append(String.Format(enUS, " {0} {1}% | {2}Mhw", BarDisplay(battery.Storage, battery.Stored, _batteryChargeWidth), Math.Round(100f * battery.Stored / battery.Storage, 0), Math.Round(battery.Stored, 2)));
       }
       spinningBar.Step();
       return result.ToString();
     }
 
-    private string BarDisplay(float max,float current,int width) {
+    private string BarDisplay(float max, float current, int width) {
       int currentWidth = (int)Math.Round(_batteryChargeWidth * current / max);
-      return "(" + new String('|',currentWidth) + new String('.',width - currentWidth) + ")";
+      return "(" + new String('|', currentWidth) + new String('.', width - currentWidth) + ")";
     }
   }
   // --------------------------------

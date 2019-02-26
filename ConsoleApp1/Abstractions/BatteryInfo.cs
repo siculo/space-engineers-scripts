@@ -3,10 +3,12 @@
   // --------------------------------
   public abstract class BatteryInfo
   {
-    public abstract string name { get; }
-    public abstract float storage { get; }
-    public abstract float stored { get; }
-    public abstract float balance { get; }
+    public abstract string Name { get; }
+    public abstract float Storage { get; }
+    public abstract float Stored { get; }
+    public abstract float Balance { get; }
+    public abstract bool Enabled { get; }
+    public abstract bool Charging { get; }
   }
   // --------------------------------
 }
