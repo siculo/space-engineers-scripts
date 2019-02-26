@@ -18,13 +18,18 @@ namespace IngameScript.ControlPanelProgram
         display = GridTerminalSystem.GetBlockWithName(_ini.Get("config", "monitor").ToString()) as IMyTextPanel;
         panel = new ControlPanel(33, 12);
         Menu menu = new Menu("Main");
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_1") as IMyFunctionalBlock, _bar));
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_2") as IMyFunctionalBlock, _bar));
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_3") as IMyFunctionalBlock, _bar));
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_4") as IMyFunctionalBlock, _bar));
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("reattore_piccolo") as IMyFunctionalBlock, _bar));
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("raffineria") as IMyFunctionalBlock, _bar));
-        menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("assemblatore") as IMyFunctionalBlock, _bar));
+
+        System.Collections.Generic.List<IMyFunctionalBlock> blocks = new System.Collections.Generic.List<IMyFunctionalBlock>();
+        GridTerminalSystem.GetBlocksOfType<IMyFunctionalBlock>(blocks, b => MyIni.HasSection(b.CustomData, "switchable"));
+        foreach(IMyFunctionalBlock b in blocks) {
+          MyIniParseResult br;
+          if (_ini.TryParse(b.CustomData, out br) && _ini.Get("switchable", "spinning").ToBoolean()) {
+            menu.AddItem(new BlockSwitcher(b, _bar));
+          } else {
+            menu.AddItem(new BlockSwitcher(b));
+          }
+        }
+        // menu.AddItem(new BlockSwitcher(GridTerminalSystem.GetBlockWithName("Batteria_1") as IMyFunctionalBlock, _bar));
         panel.SetMenu(menu);
         display.WritePublicText(panel.ToString());
         Runtime.UpdateFrequency = UpdateFrequency.Update100;
