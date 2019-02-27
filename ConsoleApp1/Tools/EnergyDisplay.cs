@@ -1,4 +1,6 @@
-﻿namespace IngameScript
+﻿using System;
+
+namespace IngameScript
 {
   public class EnergyDisplay
   {
@@ -6,7 +8,7 @@
 
     public EnergyDisplay(int lineWidth, int batteryChargeWidth) {
       _renderData.HRLenght = lineWidth;
-      _renderData.BatteryChargeWidth = batteryChargeWidth;
+      _renderData.BarWidth = batteryChargeWidth;
     }
 
     public string Show(params EnergyBlock[] blocks) {
@@ -14,7 +16,7 @@
       result.AppendLine("[Energia]");
       result.Append(_renderData.HR);
       foreach(EnergyBlock b in blocks) {
-        result.Append(b.Render(_renderData));
+        result.Append(Environment.NewLine + b.Render(_renderData));
       }
       _renderData.Bar.Step();
       return result.ToString();

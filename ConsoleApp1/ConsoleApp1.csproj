@@ -117,11 +117,13 @@
     <Compile Include="Abstractions\Flag.cs" />
     <Compile Include="Abstractions\Menu.cs" />
     <Compile Include="Abstractions\MenuItem.cs" />
+    <Compile Include="Abstractions\PowerProductionBlock.cs" />
     <Compile Include="Abstractions\RenderData.cs" />
     <Compile Include="Game\Airlock.cs" />
     <Compile Include="Game\BlockSwitcher.cs" />
     <Compile Include="Game\Command.cs" />
     <Compile Include="Game\MyBatteryBlock.cs" />
+    <Compile Include="Game\MyPowerProductionBlock.cs" />
     <Compile Include="Programs\AirlockProgram.cs" />
     <Compile Include="Programs\ControlPanelProgram.cs" />
     <Compile Include="Programs\GameProgram.cs" />

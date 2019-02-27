@@ -1,6 +1,5 @@
 ﻿namespace IngameScript
 {
-  // --------------------------------
   public class SpinningBar
   {
     private int step = 0;
@@ -15,5 +14,4 @@
       return this;
     }
   }
-  // --------------------------------
 }

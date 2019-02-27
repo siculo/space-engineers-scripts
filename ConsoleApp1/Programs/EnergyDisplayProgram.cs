@@ -5,15 +5,20 @@ namespace IngameScript.EnergyDisplayProgram
 {
   class Program: GameProgram
   {
-    EnergyDisplay display = new EnergyDisplay(34, 16);
-    BatteryBlock[] batteryInfo;
+    EnergyDisplay display = new EnergyDisplay(66, 10);
+    EnergyBlock[] batteryInfo;
 
     public Program() {
-      batteryInfo = new BatteryBlock[] {
-                MyBatteryBlock.Find(GridTerminalSystem, "Batteria_1"),
-                MyBatteryBlock.Find(GridTerminalSystem, "Batteria_2"),
-                MyBatteryBlock.Find(GridTerminalSystem, "Batteria_3"),
-                MyBatteryBlock.Find(GridTerminalSystem, "Batteria_4")
+      batteryInfo = new EnergyBlock[] {
+            MyBatteryBlock.Find(GridTerminalSystem, "Batteria_1"),
+            MyBatteryBlock.Find(GridTerminalSystem, "Batteria_2"),
+            MyBatteryBlock.Find(GridTerminalSystem, "Batteria_3"),
+            MyBatteryBlock.Find(GridTerminalSystem, "Batteria_4"),
+            MyPowerProductionBlock.Find(GridTerminalSystem, "reattore_1"),
+            MyPowerProductionBlock.Find(GridTerminalSystem, "pannello_solare_1"),
+            MyPowerProductionBlock.Find(GridTerminalSystem, "pannello_solare_2"),
+            MyPowerProductionBlock.Find(GridTerminalSystem, "pannello_solare_3"),
+            MyPowerProductionBlock.Find(GridTerminalSystem, "pannello_solare_4")
             };
       Runtime.UpdateFrequency = UpdateFrequency.Update100;
     }

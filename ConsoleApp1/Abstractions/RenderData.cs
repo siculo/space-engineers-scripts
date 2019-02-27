@@ -14,7 +14,7 @@
       get { return _hrLength; }
       set { _hrLength = value; _hr = new string('-', _hrLength); }
     }
-    public int BatteryChargeWidth { get; set; } = 18;
+    public int BarWidth { get; set; } = 18;
 
     public RenderData() {
       HRLenght = 33;

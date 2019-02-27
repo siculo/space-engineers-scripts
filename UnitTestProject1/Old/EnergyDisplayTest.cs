@@ -3,16 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IngameScript
 {
-  public class TestEnergyBlock: BatteryBlock
+  public class TestBatteryBlock: BatteryBlock
   {
     private readonly string _name;
-    private readonly float _storage;
-    private readonly float _stored;
-    private readonly float _balance;
-    private readonly bool _enabled;
-    private readonly bool _charging;
+    private readonly float _storage, _stored, _balance;
+    private readonly bool _enabled, _charging;
 
-    public TestEnergyBlock(string name, float storage, float stored, float balance, bool enabled, bool charging) {
+    public TestBatteryBlock(string name, float storage, float stored, float balance, bool enabled, bool charging) {
       _name = name;
       _storage = storage;
       _stored = stored;
@@ -22,16 +19,30 @@ namespace IngameScript
     }
 
     public override string Name { get { return _name; } }
-
-    public override float Storage { get { return _storage; } }
-
-    public override float Stored { get { return _stored; } }
-
-    public override float Balance { get { return _balance; } }
-
     public override bool Enabled { get { return _enabled; } }
-
+    public override float Storage { get { return _storage; } }
+    public override float Stored { get { return _stored; } }
+    public override float Balance { get { return _balance; } }
     public override bool Charging { get { return _charging; } }
+  }
+
+  public class TestPowerProductionBlock: PowerProductionBlock
+  {
+    private string _name;
+    private bool _enabled;
+    private float _maxOutput, _curOutput;
+
+    public TestPowerProductionBlock(string name, float maxOutput, float curOutput, bool enabled) {
+      _name = name;
+      _maxOutput = maxOutput;
+      _curOutput = curOutput;
+      _enabled = enabled;
+    }
+
+    public override string Name { get { return _name; } }
+    public override bool Enabled { get { return _enabled; } }
+    public override float MaxOutput { get { return _maxOutput; } }
+    public override float CurrentOutput { get { return _curOutput; } }
   }
 
   [TestClass]
@@ -50,19 +61,28 @@ namespace IngameScript
     }
 
     [TestMethod]
-    public void SomeBatteries() {
-      EnergyDisplay display = new EnergyDisplay(34, 18);
+    public void SomeBlocks() {
+      EnergyDisplay display = new EnergyDisplay(66, 10);
       string result = display.Show(
-        new TestEnergyBlock("batteria_1", 3.0f, 2.3f, -317.29f, true, false),
-        new TestEnergyBlock("batteria_2", 6.2f, 0f, 0f, false, true)
+        new TestBatteryBlock("batteria_1", 3.0f, 2.3f, -317.29f, true, false),
+        new TestBatteryBlock("batteria_2", 6.2f, 0f, 0f, false, true),
+        new TestPowerProductionBlock("reattore_1", 15.0f, 1.45f, true),
+        new TestPowerProductionBlock("reattore_2", 15.00011111f, 0f, false),
+        new TestPowerProductionBlock("pannello_solare", 0f, 0f, true)
       );
       string expected =
         "[Energia]" + NL +
-        "----------------------------------" + NL +
-        "batteria_1 [-] 3Mhw OUT -317.29w" + NL +
-        " (||||||||||||||....) 77% | 2.3Mhw" + NL +
-        "batteria_2 OFF 6.2Mhw IN 0w" + NL +
-        " (..................) 0% | 0Mhw";
+        "------------------------------------------------------------------" + NL +
+        "batteria_1 [-]" + NL +
+        " (||||||||..)  77% 3MWh OUT -317.29W 2.3MWh" + NL +
+        "batteria_2 OFF" + NL +
+        " (..........)   0% 6.2MWh  IN 0W 0MWh" + NL +
+        "reattore_1 [-]" + NL +
+        " (|.........)  10% 15MW OUT 1.45MW" + NL +
+        "reattore_2 OFF" + NL +
+        " (..........)   0% 15MW OUT 0MW" + NL +
+        "pannello_solare [-]" + NL +
+        " (          ) [NA] 0MW OUT 0MW";
       Assert.AreEqual(expected, result);
     }
   }
