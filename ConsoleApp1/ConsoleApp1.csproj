@@ -113,9 +113,11 @@
   <ItemGroup>
     <Compile Include="Abstractions\BatteryBlock.cs" />
     <Compile Include="Abstractions\ControlPanel.cs" />
+    <Compile Include="Abstractions\EnergyBlock.cs" />
     <Compile Include="Abstractions\Flag.cs" />
     <Compile Include="Abstractions\Menu.cs" />
     <Compile Include="Abstractions\MenuItem.cs" />
+    <Compile Include="Abstractions\RenderData.cs" />
     <Compile Include="Game\Airlock.cs" />
     <Compile Include="Game\BlockSwitcher.cs" />
     <Compile Include="Game\Command.cs" />

@@ -5,7 +5,6 @@ namespace IngameScript.EnergyDisplayProgram
 {
   class Program: GameProgram
   {
-    // --------------------------------
     EnergyDisplay display = new EnergyDisplay(34, 16);
     BatteryBlock[] batteryInfo;
 
@@ -27,6 +26,5 @@ namespace IngameScript.EnergyDisplayProgram
         d.WritePublicText(report);
       }
     }
-    // --------------------------------
   }
 }
