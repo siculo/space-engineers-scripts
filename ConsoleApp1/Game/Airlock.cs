@@ -25,6 +25,7 @@ namespace IngameScript
 
     private static readonly string S_IDLE = "";
 
+    private static readonly string S_ERR = "error";
     private static readonly string S_SETUP = "setup";
     private static readonly string S_FINISHING_SETUP = "finishing_setup";
 
@@ -48,35 +49,45 @@ namespace IngameScript
 
     private TimeSpan inDoorTime, outDoorTime, setupTime;
 
-    private string name = "";
+    private string _name;
+    public string Name { get { return _name; } }
+
     private string statusText = "";
+    private bool enabled = false;
 
     public Airlock(IMyGridTerminalSystem system,string name) {
-      this.name = name;
+      _name = name;
       inDoor = system.GetBlockWithName(name + "_Door_In") as IMyDoor;
       outDoor = system.GetBlockWithName(name + "_Door_Out") as IMyDoor;
       light = system.GetBlockWithName(name + "_Light") as IMyLightingBlock;
       vent = system.GetBlockWithName(name + "_Vent") as IMyAirVent;
       inDisplay = system.GetBlockWithName(name + "_Display_In") as IMyTextPanel;
       outDisplay = system.GetBlockWithName(name + "_Display_Out") as IMyTextPanel;
-      setStatus(S_SETUP);
+      if(inDoor == null || outDoor == null) {
+        setStatus(S_ERR);
+      } else {
+        setStatus(S_SETUP);
+        enabled = true;
+      }
     }
 
     public void startExit() {
-      if(vent.CustomData == S_IDLE) {
+      if(enabled && vent.CustomData == S_IDLE) {
         setStatus(S_EXIT_START);
       }
     }
 
     public void startEnter() {
-      if(vent.CustomData == S_IDLE) {
+      if(enabled && vent.CustomData == S_IDLE) {
         setStatus(S_ENTER_START);
       }
     }
 
     public void update(TimeSpan elapsedTime) {
       bool pressurized = vent.GetOxygenLevel() >= PRESSURIZATION_UPPER_LIMIT;
-      light.SetValue("Color",pressurized ? pressurizedColor : depressurizedColor);
+      if (light != null) {
+        light.SetValue("Color", pressurized ? pressurizedColor : depressurizedColor);
+      }
       string status = vent.CustomData;
       if(status == S_SETUP) {
         setup();
@@ -114,7 +125,7 @@ namespace IngameScript
         exitClosingSecondDoor(elapsedTime);
       } else if(status == S_ENTER_SECOND_DOOR_CLOSING) {
         enterClosingSecondDoor(elapsedTime);
-      } else {
+      } else if(status != S_ERR) {
         idle();
       }
     }
@@ -295,19 +306,21 @@ namespace IngameScript
       vent.CustomData = newStatus;
       statusText = getTextForStatus(newStatus);
       if(inDisplay != null) {
-        inDisplay.WritePublicText(statusText);
+        inDisplay.WriteText(statusText);
       }
       if(outDisplay != null) {
-        outDisplay.WritePublicText(statusText);
+        outDisplay.WriteText(statusText);
       }
     }
 
     public string description() {
-      return " " + name + "\n     Status: " + statusText + "\n   Pressure: " + Math.Floor(vent.GetOxygenLevel() * 100) + "%";
+      return " " + _name + "\n     Status: " + statusText + "\n   Pressure: " + Math.Floor(vent.GetOxygenLevel() * 100) + "%";
     }
 
     private string getTextForStatus(string status) {
-      if(status == S_SETUP) {
+      if(status == S_ERR) {
+        return "Error! " + this.ToString();
+      } else if(status == S_SETUP) {
         return "Setup...";
       } else if(status == S_FINISHING_SETUP) {
         return "Starting...";
@@ -346,6 +359,24 @@ namespace IngameScript
       } else {
         return "Ready";
       }
+    }
+
+    public override string ToString() {
+      string descr = _name;
+      string notFound = "";
+      if (inDoor == null) { notFound = notFound + "Door_In "; }
+      if (outDoor == null) { notFound = notFound + "Door_Out "; }
+      if (light == null) { notFound = notFound + "Light "; }
+      if (inDisplay == null) { notFound = notFound + "Display_In "; }
+      if (outDisplay == null) { notFound = notFound + "Display_Out "; }
+      string name = _name;
+      if(!enabled) {
+        name = name + " (disabled)";
+      }
+      if (notFound != "") {
+        return name + " - not found components: " + notFound;
+      }
+      return name;
     }
   }
   // --------------------------------

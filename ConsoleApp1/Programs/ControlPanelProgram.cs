@@ -6,7 +6,7 @@ namespace IngameScript.ControlPanelProgram
   class Program: GameProgram
   {
     ControlPanel panel;
-    IMyTextPanel display;
+    IMyTextSurface display;
     MyIni _ini = new MyIni();
     SpinningBar _bar = new SpinningBar();
 
@@ -17,15 +17,40 @@ namespace IngameScript.ControlPanelProgram
       } else {
         panel = Panel();
         panel.SetMenu(MainMenu());
-        string monitorName = _ini.Get("config", "monitor").ToString();
-        display = GridTerminalSystem.GetBlockWithName(monitorName) as IMyTextPanel;
-        if (display == null) {
-          Echo(string.Format("Display '{0}' missing", monitorName));
-        } else {
-          display.WritePublicText(panel.ToString());
+        display = FindTextSurface();
+        if (display != null) {
+          display.WriteText(panel.ToString());
           Runtime.UpdateFrequency = UpdateFrequency.Update100;
         }
       }
+    }
+
+    private IMyTextSurface FindTextSurface() {
+      string monitorName = _ini.Get("config", "monitor").ToString();
+      IMyTextSurface display = null;
+      if(monitorName != "") {
+        display = GridTerminalSystem.GetBlockWithName(monitorName) as IMyTextSurface;
+        if(display == null) {
+          Echo(string.Format("Display '{0}' missing", monitorName));
+        } else {
+          Echo(string.Format("Display '{0}' found", monitorName));
+        }
+      } else {
+        string cockpitName = _ini.Get("config", "cockpit").ToString();
+        if(cockpitName != "") {
+          int surfaceNumber = _ini.Get("config", "surface").ToInt32(0);
+          IMyTextSurfaceProvider cockpit = GridTerminalSystem.GetBlockWithName(cockpitName) as IMyTextSurfaceProvider;
+          if(cockpit != null) {
+            display = cockpit.GetSurface(surfaceNumber);
+          }
+          if(cockpitName == null) {
+            Echo(string.Format("Display '{0}' of '{1}' missing", surfaceNumber, cockpitName));
+          } else {
+            Echo(string.Format("Display '{0}' of '{1}' found", surfaceNumber, cockpitName));
+          }
+        }
+      }
+      return display;
     }
 
     private ControlPanel Panel() {
@@ -71,7 +96,7 @@ namespace IngameScript.ControlPanelProgram
       } else {
         _bar.Step();
       }
-      display.WritePublicText(panel.ToString());
+      display.WriteText(panel.ToString());
     }
   }
 }
