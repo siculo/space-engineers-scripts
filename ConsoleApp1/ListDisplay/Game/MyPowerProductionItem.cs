@@ -2,15 +2,15 @@
 
 namespace IngameScript
 {
-  public class MyPowerProductionBlock: PowerProductionBlock
+  public class MyPowerProductionItem: PowerProductionItem
   {
     private readonly IMyPowerProducer _block;
 
-    public static MyPowerProductionBlock Find(IMyGridTerminalSystem gts, string name) {
-      return new MyPowerProductionBlock(gts.GetBlockWithName(name) as IMyPowerProducer);
+    public static MyPowerProductionItem Find(IMyGridTerminalSystem gts, string name) {
+      return new MyPowerProductionItem(gts.GetBlockWithName(name) as IMyPowerProducer);
     }
 
-    public MyPowerProductionBlock(IMyPowerProducer block) {
+    public MyPowerProductionItem(IMyPowerProducer block) {
       _block = block;
     }
 

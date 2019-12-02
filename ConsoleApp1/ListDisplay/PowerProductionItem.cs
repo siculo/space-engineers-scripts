@@ -2,18 +2,18 @@
 
 namespace IngameScript
 {
-  public abstract class PowerProductionBlock: EnergyBlock
+  public abstract class PowerProductionItem: EnergyItem
   {
     public abstract float MaxOutput { get; }
     public abstract float CurrentOutput { get; }
 
-    public override string Render(RenderData r) {
+    public override string Render(DisplayObjects r) {
       return string.Format(
         r.EnUS, "{0}" + Environment.NewLine + " {3} {1}MW OUT {2}MW",
         RenderHeader(r),
         Math.Round(MaxOutput, 2),
         Math.Round(CurrentOutput, 2),
-        BarDisplay(r, MaxOutput, CurrentOutput)
+        RenderLevelBar(r, MaxOutput, CurrentOutput)
       );
     }
   }

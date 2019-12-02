@@ -7,7 +7,7 @@ namespace IngameScript
     public class SpinningBarTest
     {
         [TestMethod]
-        public void steps()
+        public void Steps()
         {
             SpinningBar bar = new SpinningBar();
             Assert.AreEqual("-", bar.ToString());

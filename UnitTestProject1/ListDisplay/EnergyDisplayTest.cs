@@ -3,48 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IngameScript
 {
-  public class TestBatteryBlock: BatteryBlock
-  {
-    private readonly string _name;
-    private readonly float _storage, _stored, _balance;
-    private readonly bool _enabled, _charging;
-
-    public TestBatteryBlock(string name, float storage, float stored, float balance, bool enabled, bool charging) {
-      _name = name;
-      _storage = storage;
-      _stored = stored;
-      _balance = balance;
-      _enabled = enabled;
-      _charging = charging;
-    }
-
-    public override string Name { get { return _name; } }
-    public override bool Enabled { get { return _enabled; } }
-    public override float Storage { get { return _storage; } }
-    public override float Stored { get { return _stored; } }
-    public override float Balance { get { return _balance; } }
-    public override bool Charging { get { return _charging; } }
-  }
-
-  public class TestPowerProductionBlock: PowerProductionBlock
-  {
-    private string _name;
-    private bool _enabled;
-    private float _maxOutput, _curOutput;
-
-    public TestPowerProductionBlock(string name, float maxOutput, float curOutput, bool enabled) {
-      _name = name;
-      _maxOutput = maxOutput;
-      _curOutput = curOutput;
-      _enabled = enabled;
-    }
-
-    public override string Name { get { return _name; } }
-    public override bool Enabled { get { return _enabled; } }
-    public override float MaxOutput { get { return _maxOutput; } }
-    public override float CurrentOutput { get { return _curOutput; } }
-  }
-
   [TestClass]
   public class EnergyDisplayTest
   {
@@ -85,5 +43,47 @@ namespace IngameScript
         " (          ) [NA] 0MW OUT 0MW";
       Assert.AreEqual(expected, result);
     }
+  }
+
+  public class TestBatteryBlock: BatteryItem
+  {
+    private readonly string _name;
+    private readonly float _storage, _stored, _balance;
+    private readonly bool _enabled, _charging;
+
+    public TestBatteryBlock(string name, float storage, float stored, float balance, bool enabled, bool charging) {
+      _name = name;
+      _storage = storage;
+      _stored = stored;
+      _balance = balance;
+      _enabled = enabled;
+      _charging = charging;
+    }
+
+    public override string Name { get { return _name; } }
+    public override bool Enabled { get { return _enabled; } }
+    public override float Storage { get { return _storage; } }
+    public override float Stored { get { return _stored; } }
+    public override float Balance { get { return _balance; } }
+    public override bool Charging { get { return _charging; } }
+  }
+
+  public class TestPowerProductionBlock: PowerProductionItem
+  {
+    private string _name;
+    private bool _enabled;
+    private float _maxOutput, _curOutput;
+
+    public TestPowerProductionBlock(string name, float maxOutput, float curOutput, bool enabled) {
+      _name = name;
+      _maxOutput = maxOutput;
+      _curOutput = curOutput;
+      _enabled = enabled;
+    }
+
+    public override string Name { get { return _name; } }
+    public override bool Enabled { get { return _enabled; } }
+    public override float MaxOutput { get { return _maxOutput; } }
+    public override float CurrentOutput { get { return _curOutput; } }
   }
 }

@@ -1,6 +1,6 @@
 ﻿namespace IngameScript
 {
-  public class RenderData
+  public class DisplayObjects
   {
     private string _hr;
     private int _hrLength;
@@ -16,7 +16,7 @@
     }
     public int BarWidth { get; set; } = 18;
 
-    public RenderData() {
+    public DisplayObjects() {
       HRLenght = 33;
     }
   }
