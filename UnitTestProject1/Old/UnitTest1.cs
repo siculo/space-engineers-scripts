@@ -1,13 +1,10 @@
-﻿using System;
-using IngameScript;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sandbox.ModAPI;
-using SpaceEngineers.Game.ModAPI;
-using VRage.Game.ModAPI.Ingame.Utilities;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using static IngameScript.Program;
 
 namespace IngameScript
 {
-    public class TestOutput : TextOuput
+  public class TestOutput : TextOuput
     {
         public string currentText = "";
 

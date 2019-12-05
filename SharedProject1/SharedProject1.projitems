@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>d6c6e95c-9d79-4509-86f3-6978471a39b5</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedProject1</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Abstractions\Flag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Airlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Abstractions\ControlPanel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Abstractions\Menu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Abstractions\MenuItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Abstractions\TextOuput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\BlockSwitcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Class1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Command.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\TextPanelOutput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\BatteryItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\DisplayObjects.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\EnergyItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Game\MyBatteryItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Game\MyPowerProductionItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListDisplayItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\PowerProductionItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\DisplayConsole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\EnergyDisplay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\ListDisplay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\ResourceDisplay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tools\SpinningBar.cs" />
+  </ItemGroup>
+</Project>

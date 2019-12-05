@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static IngameScript.Program;
 
 namespace IngameScript
 {
@@ -45,7 +46,7 @@ namespace IngameScript
     }
   }
 
-  public class TestBatteryBlock: BatteryItem
+  class TestBatteryBlock: BatteryItem
   {
     private readonly string _name;
     private readonly float _storage, _stored, _balance;
@@ -68,7 +69,7 @@ namespace IngameScript
     public override bool Charging { get { return _charging; } }
   }
 
-  public class TestPowerProductionBlock: PowerProductionItem
+  class TestPowerProductionBlock: PowerProductionItem
   {
     private string _name;
     private bool _enabled;
