@@ -4,7 +4,7 @@
   {
     public abstract class ListDisplayItem
     {
-      public abstract string Render(DisplayObjects obj);
+      public abstract string Render(DisplayContext ctx);
     }
   }
 }

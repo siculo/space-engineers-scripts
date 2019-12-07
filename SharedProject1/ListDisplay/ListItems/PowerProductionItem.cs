@@ -9,14 +9,14 @@ namespace IngameScript
       public abstract float MaxOutput { get; }
       public abstract float CurrentOutput { get; }
 
-      public override string Render(DisplayObjects r)
+      public override string Render(DisplayContext ctx)
       {
         return string.Format(
-          r.EnUS, "{0}" + Environment.NewLine + " {3} {1}MW OUT {2}MW",
-          RenderHeader(r),
+          ctx.EnUS, "{0}" + Environment.NewLine + " {3} {1}MW OUT {2}MW",
+          RenderHeader(ctx),
           Math.Round(MaxOutput, 2),
           Math.Round(CurrentOutput, 2),
-          RenderLevelBar(r, MaxOutput, CurrentOutput)
+          RenderLevelBar(ctx, MaxOutput, CurrentOutput)
         );
       }
     }

@@ -6,13 +6,13 @@ namespace IngameScript
   {
     public class ListDisplay
     {
-      private readonly DisplayObjects _dataDisplayObjects = new DisplayObjects();
+      private readonly DisplayContext _ctx = new DisplayContext();
       private readonly string _label;
 
       public ListDisplay(int lineWidth, int barWidth, string label)
       {
-        _dataDisplayObjects.HRLenght = lineWidth;
-        _dataDisplayObjects.BarWidth = barWidth;
+        _ctx.HRLenght = lineWidth;
+        _ctx.BarWidth = barWidth;
         _label = label;
       }
 
@@ -20,12 +20,12 @@ namespace IngameScript
       {
         System.Text.StringBuilder result = new System.Text.StringBuilder();
         result.AppendLine("[" + _label + "]");
-        result.Append(_dataDisplayObjects.HR);
+        result.Append(_ctx.HR);
         foreach (ListDisplayItem rd in rowDisplays)
         {
-          result.Append(Environment.NewLine + rd.Render(_dataDisplayObjects));
+          result.Append(Environment.NewLine + rd.Render(_ctx));
         }
-        _dataDisplayObjects.Bar.Step();
+        _ctx.Bar.Step();
         return result.ToString();
       }
     }
