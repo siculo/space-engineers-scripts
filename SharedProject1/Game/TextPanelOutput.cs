@@ -16,7 +16,7 @@ namespace IngameScript
 
       public void Set(string t)
       {
-        panel.WritePublicText(t);
+        panel.WriteText(t);
       }
     }
   }

@@ -15,12 +15,12 @@ namespace IngameScript
       MyIniParseResult result;
       if (!_ini.TryParse(Me.CustomData, out result))
       {
-        Echo("c'è un problema: " + result.Success + " " + result.Error);
+        Echo("Error parsing configuration: " + result.Success + " " + result.Error);
       }
       else
       {
         panel = Panel();
-        panel.SetMenu(MainMenu());
+        panel.SetMenu(MainMenu(panel));
         display = FindTextSurface();
         if (display != null)
         {
@@ -77,17 +77,18 @@ namespace IngameScript
       return new ControlPanel(columns, rows);
     }
 
-    private Menu MainMenu()
+    private Menu MainMenu(ControlPanel panel)
     {
       Menu menu = new Menu("Main");
       menu.AddItem(SwitchMenu());
+      menu.AddItem(new ControlPanelReset(panel, () => MainMenu(panel)));
       return menu;
     }
 
     private Menu SwitchMenu()
     {
       MyIni menuIni = new MyIni();
-      Menu menu = new Menu("Sistemi Attivi");
+      Menu menu = new Menu("Active Systems");
       System.Collections.Generic.List<IMyFunctionalBlock> blocks = new System.Collections.Generic.List<IMyFunctionalBlock>();
       GridTerminalSystem.GetBlocksOfType<IMyFunctionalBlock>(blocks, b => MyIni.HasSection(b.CustomData, "switchable"));
       blocks.Sort(delegate (IMyFunctionalBlock b1, IMyFunctionalBlock b2) {

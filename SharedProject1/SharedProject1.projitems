@@ -10,13 +10,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Abstractions\Flag.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Abstractions\MenuItems\ControlPanelReset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Airlock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Abstractions\ControlPanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Abstractions\Menu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Abstractions\MenuItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Abstractions\TextOuput.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\BlockSwitcher.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Game\Class1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\TextPanelOutput.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\BatteryItem.cs" />
