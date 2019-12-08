@@ -13,12 +13,13 @@ namespace UnitTestProject1.Utility
    * TODO:
    *  [-] resource ListDisplayItem
    *    [x] DisplayContext param in ListDisplay constructor
-   *    [-] set maximum value for graph bar
-   *    [-] parametric number of decimal digits in DisplayContext.allignToDecimalSeparator
+   *    [x] set maximum value for graph bar
+   *    
    *  [-] rimuovere classe ResourceDisplay
    *  [-] summary of a container with only one resource
    *  [-] summary of some containers with only one resource of the same type
    *  [-] summary of a container with more resources of the same types
+   *  [-] parametric number of decimal digits in DisplayContext.allignToDecimalSeparator
    *  
    *  [-] all types of resources
    *  [-] summary of a container with more resources of different types
@@ -53,11 +54,9 @@ namespace UnitTestProject1.Utility
       ResourceDisplayContext ctx = new ResourceDisplayContext();
       ctx.MaxAmount = (MyFixedPoint)12000.22;
       Assert.AreEqual("Ice      (|||||||||||)  12000.22", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)12000.22)).Render(ctx));
-      /*
       Assert.AreEqual("Ice      (|||||......)   5021.59", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)5021.59)).Render(ctx));
       Assert.AreEqual("Ice      (...........)     77.1 ", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)77.1)).Render(ctx));
-      Assert.AreEqual("Ice      (|..........)    234   ", new ResourceItem(new Resource(ResourceType.Ice, 234)).Render(ctx));
-      */
+      Assert.AreEqual("Ice      (|..........)   1034   ", new ResourceItem(new Resource(ResourceType.Ice, 1034)).Render(ctx));
     }
   }
 }

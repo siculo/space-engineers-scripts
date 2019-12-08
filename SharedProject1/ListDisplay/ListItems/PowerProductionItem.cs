@@ -16,7 +16,7 @@ namespace IngameScript
           RenderHeader(ctx),
           Math.Round(MaxOutput, 2),
           Math.Round(CurrentOutput, 2),
-          RenderLevelBar(ctx, MaxOutput, CurrentOutput)
+          ctx.RenderLevelBar(MaxOutput, CurrentOutput, ctx.BarWidth, true)
         );
       }
     }

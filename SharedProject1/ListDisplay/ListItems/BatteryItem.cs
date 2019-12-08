@@ -19,7 +19,7 @@ namespace IngameScript
           Math.Round(Storage, 2),
           Charging ? " IN" : "OUT",
           Math.Round(Balance, 2),
-          RenderLevelBar(ctx, Storage, Stored),
+          ctx.RenderLevelBar(Storage, Stored, ctx.BarWidth, true),
           Math.Round(Stored, 2)
         );
       }

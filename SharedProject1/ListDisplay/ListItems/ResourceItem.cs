@@ -19,8 +19,9 @@ namespace IngameScript
       {
         return string.Format(
           ctx.EnUS,
-          "Ice      (|||||||||||) {0, 9}",
-          ctx.allignToDecimalSeparator((double)_resource.Amount)
+          "Ice      {0} {1, 9}",
+          ctx.RenderLevelBar((double)ctx.MaxAmount, (double)_resource.Amount, 11),
+          ctx.AllignToDecimalSeparator((double)_resource.Amount)
         );
       }
     }

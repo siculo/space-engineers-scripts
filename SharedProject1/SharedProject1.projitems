@@ -23,9 +23,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\Game\BlockSwitcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\Game\Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Game\TextPanelOutput.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\Game\BatteryItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListItems\BatteryItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\DisplayContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\Game\EnergyItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListItems\EnergyItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Game\MyBatteryItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Game\MyPowerProductionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListDisplayItem.cs" />
