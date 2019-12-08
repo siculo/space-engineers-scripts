@@ -21,9 +21,9 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class EnergyDisplay : ListDisplay<DisplayContext>
+    public class EnergyDisplay : ListDisplay<EnergyDisplayContext>
     {
-      public EnergyDisplay(DisplayContext ctx) : base (ctx, "Energy")
+      public EnergyDisplay(EnergyDisplayContext ctx) : base (ctx, "Energy")
       {
       }
     }

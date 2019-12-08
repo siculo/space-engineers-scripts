@@ -11,7 +11,7 @@ namespace IngameScript
 
     [TestMethod]
     public void NothingToDisplay() {
-      DisplayContext ctx = new DisplayContext();
+      EnergyDisplayContext ctx = new EnergyDisplayContext();
       ctx.BarWidth = 18;
       ctx.RowWidth = 34;
       EnergyDisplay display = new EnergyDisplay(ctx);
@@ -25,7 +25,7 @@ namespace IngameScript
     [TestMethod]
     public void SomeBlocks()
     {
-      DisplayContext ctx = new DisplayContext();
+      EnergyDisplayContext ctx = new EnergyDisplayContext();
       ctx.BarWidth = 10;
       ctx.RowWidth = 66;
       EnergyDisplay display = new EnergyDisplay(ctx);

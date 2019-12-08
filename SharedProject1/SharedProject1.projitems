@@ -11,8 +11,9 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\MenuItems\Flag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\MenuItems\ControlPanelReset.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListItems\ResourceItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ResourceDisplayContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Energy\EnergyDisplayContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Resource\ResourceItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Resource\ResourceDisplayContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Container.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Resource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\TextOuput.cs" />
@@ -23,21 +24,22 @@
     <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\Game\BlockSwitcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\Game\Command.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Game\TextPanelOutput.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListItems\BatteryItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Energy\BatteryItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\DisplayContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListItems\EnergyItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Game\MyBatteryItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Game\MyPowerProductionItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Energy\EnergyItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Energy\Game\MyBatteryItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Energy\Game\MyPowerProductionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListDisplayItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListItems\PowerProductionItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Energy\PowerProductionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\DisplayConsole.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\EnergyDisplay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Energy\EnergyDisplay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListDisplay.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ResourceDisplay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Resource\ResourceDisplay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\SpinningBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ControlPanel\Game\" />
+    <Folder Include="$(MSBuildThisFileDirectory)ListDisplay\Resource\" />
     <Folder Include="$(MSBuildThisFileDirectory)Utility\Game\" />
   </ItemGroup>
 </Project>

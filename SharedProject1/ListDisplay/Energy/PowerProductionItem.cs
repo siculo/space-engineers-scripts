@@ -9,7 +9,7 @@ namespace IngameScript
       public abstract float MaxOutput { get; }
       public abstract float CurrentOutput { get; }
 
-      public override string Render(DisplayContext ctx)
+      public override string Render(EnergyDisplayContext ctx)
       {
         return string.Format(
           ctx.EnUS, "{0}" + Environment.NewLine + " {3} {1}MW OUT {2}MW",

@@ -4,12 +4,12 @@ namespace IngameScript
 {
   partial class Program
   {
-    public abstract class EnergyItem : ListDisplayItem<DisplayContext>
+    public abstract class EnergyItem : ListDisplayItem<EnergyDisplayContext>
     {
       public abstract string Name { get; }
       public abstract bool Enabled { get; }
 
-      protected string RenderHeader(DisplayContext ctx)
+      protected string RenderHeader(EnergyDisplayContext ctx)
       {
         return Name + " " + (Enabled ? "[" + ctx.Bar + "]" : "OFF");
       }

@@ -11,7 +11,7 @@ namespace IngameScript
       public abstract float Balance { get; }
       public abstract bool Charging { get; }
 
-      public override string Render(DisplayContext ctx)
+      public override string Render(EnergyDisplayContext ctx)
       {
         return String.Format(
           ctx.EnUS, "{0}" + Environment.NewLine + " {4} {1}MWh {2} {3}W {5}MWh",

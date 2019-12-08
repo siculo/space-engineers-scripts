@@ -5,34 +5,34 @@ namespace IngameScript
 {
   partial class Program : MyGridProgram
   {
-    DisplayContext ctx1;
+    EnergyDisplayContext ctx1;
     EnergyDisplay display1;
-    ListDisplayItem<DisplayContext>[] energyInfo1;
+    EnergyItem[] energyInfo1;
 
-    DisplayContext ctx2;
+    EnergyDisplayContext ctx2;
     EnergyDisplay display2;
-    ListDisplayItem<DisplayContext>[] energyInfo2;
+    EnergyItem[] energyInfo2;
 
     public Program()
     {
-      ctx1 = new DisplayContext();
+      ctx1 = new EnergyDisplayContext();
       ctx1.BarWidth = 10;
       ctx1.RowWidth = 66;
       display1 = new EnergyDisplay(ctx1);
 
-      ctx2 = new DisplayContext();
+      ctx2 = new EnergyDisplayContext();
       ctx2.BarWidth = 10;
       ctx2.RowWidth = 66;
       display2 = new EnergyDisplay(ctx2);
 
-      energyInfo1 = new ListDisplayItem<DisplayContext>[] {
+      energyInfo1 = new EnergyItem[] {
             MyPowerProductionItem.Find(GridTerminalSystem, "reattore_1"),
             MyBatteryItem.Find(GridTerminalSystem, "Batteria_1"),
             MyBatteryItem.Find(GridTerminalSystem, "Batteria_2"),
             MyBatteryItem.Find(GridTerminalSystem, "Batteria_3"),
             MyBatteryItem.Find(GridTerminalSystem, "Batteria_4")
             };
-      energyInfo2 = new ListDisplayItem<DisplayContext>[] {
+      energyInfo2 = new EnergyItem[] {
             MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_1"),
             MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_2"),
             MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_3"),
