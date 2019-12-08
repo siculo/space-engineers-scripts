@@ -16,10 +16,13 @@ namespace IngameScript
 
     [TestMethod]
     public void NoResourcesToDisplay() {
-      ResourceDisplay display = new ResourceDisplay(36, 14);
+      DisplayContext ctx = new ResourceDisplayContext();
+      ctx.BarWidth = 14;
+      ctx.RowWidth = 36;
+      ResourceDisplay display = new ResourceDisplay(ctx);
       string result = display.Show();
       string expected =
-        "[Risorse]" + NL +
+        "[Resources]" + NL +
         "------------------------------------";
       Assert.AreEqual(expected, result);
     }

@@ -11,7 +11,10 @@ namespace IngameScript
 
     [TestMethod]
     public void NothingToDisplay() {
-      EnergyDisplay display = new EnergyDisplay(34, 18);
+      DisplayContext ctx = new DisplayContext();
+      ctx.BarWidth = 18;
+      ctx.RowWidth = 34;
+      EnergyDisplay display = new EnergyDisplay(ctx);
       string result = display.Show();
       string expected =
         "[Energy]" + NL +
@@ -20,8 +23,12 @@ namespace IngameScript
     }
 
     [TestMethod]
-    public void SomeBlocks() {
-      EnergyDisplay display = new EnergyDisplay(66, 10);
+    public void SomeBlocks()
+    {
+      DisplayContext ctx = new DisplayContext();
+      ctx.BarWidth = 10;
+      ctx.RowWidth = 66;
+      EnergyDisplay display = new EnergyDisplay(ctx);
       string result = display.Show(
         new TestBatteryBlock("batteria_1", 3.0f, 2.3f, -317.29f, true, false),
         new TestBatteryBlock("batteria_2", 6.2f, 0f, 0f, false, true),

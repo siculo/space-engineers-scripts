@@ -5,11 +5,16 @@ namespace IngameScript
 {
   partial class Program : MyGridProgram
   {
-    ResourceDisplay display = new ResourceDisplay(33, 10);
+    DisplayContext ctx;
+    ResourceDisplay display
     ListDisplayItem[] resourceInfo;
 
     public Program()
     {
+      ctx = new ResourceDisplayContext();
+      ctx.BarWidth = 10;
+      ctx.RowWidth = 33;
+      display = new ResourceDisplay(ctx);
       resourceInfo = new ListDisplayItem[] { };
       Runtime.UpdateFrequency = UpdateFrequency.Update100;
     }

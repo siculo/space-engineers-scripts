@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\MenuItems\Flag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\MenuItems\ControlPanelReset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ListItems\ResourceItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\ResourceDisplayContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Container.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Resource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\TextOuput.cs" />

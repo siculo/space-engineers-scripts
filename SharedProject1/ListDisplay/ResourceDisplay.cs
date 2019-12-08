@@ -4,7 +4,7 @@
   {
     public class ResourceDisplay : ListDisplay
     {
-      public ResourceDisplay(int lineWidth, int barWidth) : base(lineWidth, barWidth, "Risorse")
+      public ResourceDisplay(DisplayContext ctx): base(ctx, "Resources")
       {
       }
     }

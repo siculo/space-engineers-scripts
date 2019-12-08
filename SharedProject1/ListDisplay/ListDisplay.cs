@@ -6,13 +6,12 @@ namespace IngameScript
   {
     public class ListDisplay
     {
-      private readonly DisplayContext _ctx = new DisplayContext();
-      private readonly string _label;
+      private DisplayContext _ctx;
+      private string _label;
 
-      public ListDisplay(int lineWidth, int barWidth, string label)
+      public ListDisplay(DisplayContext ctx, string label)
       {
-        _ctx.HRLenght = lineWidth;
-        _ctx.BarWidth = barWidth;
+        _ctx = ctx;
         _label = label;
       }
 

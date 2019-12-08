@@ -12,6 +12,10 @@ namespace UnitTestProject1.Utility
   /*
    * TODO:
    *  [-] resource ListDisplayItem
+   *    [x] DisplayContext parametro del costruttore del ListDisplay
+   *    [-] set maximum value for graph bar
+   *    [-] parametric number of decimal digits in DisplayContext.allignToDecimalSeparator
+   *  [-] rimuovere classe ResourceDisplay
    *  [-] summary of a container with only one resource
    *  [-] summary of some containers with only one resource of the same type
    *  [-] summary of a container with more resources of the same types
@@ -19,6 +23,10 @@ namespace UnitTestProject1.Utility
    *  [-] all types of resources
    *  [-] summary of a container with more resources of different types
    *  [-] summary of some containers with resources of different types
+   *  
+   *  [-] DisplayContext con costruttore con valori iniziali proprietà (rendere proprietà R/O?)
+   *  [-] display context generico che non dipende dal ListDisplay (se è il caso fare ListDisplayContext : DisplayContext)
+   *  [?] trasferire proprietà label da ListDisplay in DisplayContext
    */
   [TestClass]
   public class ResourceTest
@@ -42,11 +50,13 @@ namespace UnitTestProject1.Utility
     public void ResourceDisplayItem()
     {
       // todo: Render should use maximum amount value to calculate bar size
-      DisplayContext ctx = new DisplayContext();
+      DisplayContext ctx = new ResourceDisplayContext();
       Assert.AreEqual("Ice      (|||||||||||)  12000.22", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)12000.22)).Render(ctx));
+      /*
       Assert.AreEqual("Ice      (|||||......)   5021.59", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)5021.59)).Render(ctx));
       Assert.AreEqual("Ice      (...........)     77.1 ", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)77.1)).Render(ctx));
       Assert.AreEqual("Ice      (|..........)    234   ", new ResourceItem(new Resource(ResourceType.Ice, 234)).Render(ctx));
+      */
     }
   }
 }
