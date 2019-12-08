@@ -4,23 +4,23 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class ListDisplay
+    public class ListDisplay<C> where C : DisplayContext
     {
-      private DisplayContext _ctx;
+      private C _ctx;
       private string _label;
 
-      public ListDisplay(DisplayContext ctx, string label)
+      public ListDisplay(C ctx, string label)
       {
         _ctx = ctx;
         _label = label;
       }
 
-      public string Show(params ListDisplayItem[] rowDisplays)
+      public string Show(params ListDisplayItem<C>[] rowDisplays)
       {
         System.Text.StringBuilder result = new System.Text.StringBuilder();
         result.AppendLine("[" + _label + "]");
         result.Append(_ctx.HR);
-        foreach (ListDisplayItem rd in rowDisplays)
+        foreach (ListDisplayItem<C> rd in rowDisplays)
         {
           result.Append(Environment.NewLine + rd.Render(_ctx));
         }

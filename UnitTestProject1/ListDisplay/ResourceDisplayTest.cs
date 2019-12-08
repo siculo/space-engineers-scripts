@@ -16,7 +16,7 @@ namespace IngameScript
 
     [TestMethod]
     public void NoResourcesToDisplay() {
-      DisplayContext ctx = new ResourceDisplayContext();
+      ResourceDisplayContext ctx = new ResourceDisplayContext();
       ctx.BarWidth = 14;
       ctx.RowWidth = 36;
       ResourceDisplay display = new ResourceDisplay(ctx);

@@ -2,9 +2,9 @@
 {
   partial class Program
   {
-    public class ResourceDisplay : ListDisplay
+    public class ResourceDisplay : ListDisplay<ResourceDisplayContext>
     {
-      public ResourceDisplay(DisplayContext ctx): base(ctx, "Resources")
+      public ResourceDisplay(ResourceDisplayContext ctx): base(ctx, "Resources")
       {
       }
     }

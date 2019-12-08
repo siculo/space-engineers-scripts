@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using VRage;
 
 namespace IngameScript
 {
@@ -8,6 +9,12 @@ namespace IngameScript
   {
     public class ResourceDisplayContext : DisplayContext
     {
+      public MyFixedPoint MaxAmount { get; set; }
+
+      public ResourceDisplayContext()
+      {
+        MaxAmount = 0;
+      }
     }
   }
 }

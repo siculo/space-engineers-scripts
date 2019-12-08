@@ -6,7 +6,7 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class ResourceItem : ListDisplayItem
+    public class ResourceItem : ListDisplayItem<ResourceDisplayContext>
     {
       private Resource _resource;
 
@@ -15,7 +15,7 @@ namespace IngameScript
         _resource = resource;
       }
 
-      public override string Render(DisplayContext ctx)
+      public override string Render(ResourceDisplayContext ctx)
       {
         return string.Format(
           ctx.EnUS,

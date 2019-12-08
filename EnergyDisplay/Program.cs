@@ -7,11 +7,11 @@ namespace IngameScript
   {
     DisplayContext ctx1;
     EnergyDisplay display1;
-    ListDisplayItem[] energyInfo1;
+    ListDisplayItem<DisplayContext>[] energyInfo1;
 
     DisplayContext ctx2;
     EnergyDisplay display2;
-    ListDisplayItem[] energyInfo2;
+    ListDisplayItem<DisplayContext>[] energyInfo2;
 
     public Program()
     {
@@ -25,14 +25,14 @@ namespace IngameScript
       ctx2.RowWidth = 66;
       display2 = new EnergyDisplay(ctx2);
 
-      energyInfo1 = new ListDisplayItem[] {
+      energyInfo1 = new ListDisplayItem<DisplayContext>[] {
             MyPowerProductionItem.Find(GridTerminalSystem, "reattore_1"),
             MyBatteryItem.Find(GridTerminalSystem, "Batteria_1"),
             MyBatteryItem.Find(GridTerminalSystem, "Batteria_2"),
             MyBatteryItem.Find(GridTerminalSystem, "Batteria_3"),
             MyBatteryItem.Find(GridTerminalSystem, "Batteria_4")
             };
-      energyInfo2 = new ListDisplayItem[] {
+      energyInfo2 = new ListDisplayItem<DisplayContext>[] {
             MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_1"),
             MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_2"),
             MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_3"),
