@@ -11,11 +11,11 @@ namespace UnitTestProject1.Utility
 {
   /*
    * TODO:
-   *  [-] resource ListDisplayItem
+   *  [x] resource ListDisplayItem
    *    [x] DisplayContext param in ListDisplay constructor
    *    [x] set maximum value for graph bar
-   *    
-   *  [-] rimuovere classe ResourceDisplay
+   *  [-] EnergyDisplayContext
+   *  
    *  [-] summary of a container with only one resource
    *  [-] summary of some containers with only one resource of the same type
    *  [-] summary of a container with more resources of the same types
