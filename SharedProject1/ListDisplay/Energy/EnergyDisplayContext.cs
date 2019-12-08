@@ -8,7 +8,7 @@ namespace IngameScript
   {
     public class EnergyDisplayContext : DisplayContext
     { 
-      // public int BarWidth { get; set; }
+      public int BarWidth { get; set; }
     }
   }
 }

@@ -14,16 +14,17 @@ namespace UnitTestProject1.Utility
    *  [x] resource ListDisplayItem
    *    [x] DisplayContext param in ListDisplay constructor
    *    [x] set maximum value for graph bar
-   *  [-] EnergyDisplayContext
+   *  [x] EnergyDisplayContext
    *  
    *  [-] summary of a container with only one resource
    *  [-] summary of some containers with only one resource of the same type
    *  [-] summary of a container with more resources of the same types
-   *  [-] parametric number of decimal digits in DisplayContext.allignToDecimalSeparator
+   *  [-] in-game display of single resource summary
    *  
-   *  [-] all types of resources
+   *  [-] parametric number of decimal digits in DisplayContext.allignToDecimalSeparator
    *  [-] summary of a container with more resources of different types
    *  [-] summary of some containers with resources of different types
+   *  [-] all types of resources
    *  
    *  [-] DisplayContext with constructor for properties initial values (properties should be R/O?)
    *  [-] generic display context that does not belongs to ListDisplay (se è il caso fare ListDisplayContext : DisplayContext)

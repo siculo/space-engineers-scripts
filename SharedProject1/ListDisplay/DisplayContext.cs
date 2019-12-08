@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace IngameScript
 {
@@ -16,22 +16,12 @@ namespace IngameScript
         get { return _hr; }
       }
 
-      // TODO: use RowWidth
-      public int HRLenght {
-        get { return _rowWidth; }
-        set { _rowWidth = value; _hr = new string('-', _rowWidth); }
-      }
-
-      private int _rowWidth = 18;
+      private int _rowWidth = 0;
 
       public int RowWidth { get { return _rowWidth; } set { _rowWidth = value; _hr = new string('-', _rowWidth); } }
 
-      // TODO: use RowWidth if you want to calculate bar width from row width
-      public int BarWidth { get; set; }
-
       public DisplayContext()
       {
-        HRLenght = 33;
       }
 
       public string RenderLevelBar(double max, double current, int barWidth, bool showPercent = false)
