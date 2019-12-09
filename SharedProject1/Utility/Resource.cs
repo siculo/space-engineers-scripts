@@ -9,7 +9,7 @@ namespace IngameScript
   {
     public enum ResourceType
     {
-      Ice
+      Ice, Iron, Gold, Silver, Stone, Magnesium
     }
 
     public class Resource
@@ -25,6 +25,33 @@ namespace IngameScript
       {
         Type = type;
         Amount = amout;
+      }
+
+      public override bool Equals(object obj)
+      {
+        return this.Equals(obj as Resource);
+      }
+
+      public bool Equals(Resource that)
+      {
+        if (Object.ReferenceEquals(that, null))
+        {
+          return false;
+        }
+        if (Object.ReferenceEquals(this, that))
+        {
+          return true;
+        }
+        if (this.GetType() != that.GetType())
+        {
+          return false;
+        }
+        return (Type == that.Type) && (Amount == that.Amount);
+      }
+
+      public override int GetHashCode()
+      {
+        return Type.GetHashCode() * 0x00010000 + Amount.GetHashCode();
       }
     }
   }

@@ -109,7 +109,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ListDisplay\EnergyDisplayTest.cs" />
     <Compile Include="Old\SpinningBarTest.cs" />
-    <Compile Include="Utility\ResourceTest.cs" />
+    <Compile Include="Utility\ContainerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
