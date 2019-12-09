@@ -10,6 +10,7 @@ namespace IngameScript
     public class ResourceDisplayContext : DisplayContext
     {
       public MyFixedPoint MaxAmount { get; set; }
+      public int BarWidth { get; set; }
 
       public ResourceDisplayContext()
       {

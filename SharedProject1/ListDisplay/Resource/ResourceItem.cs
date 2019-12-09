@@ -20,7 +20,7 @@ namespace IngameScript
         return string.Format(
           ctx.EnUS,
           "Ice      {0} {1, 9}",
-          ctx.RenderLevelBar((double)ctx.MaxAmount, (double)_resource.Amount, 11),
+          ctx.RenderLevelBar((double)ctx.MaxAmount, (double)_resource.Amount, ctx.BarWidth),
           ctx.AllignToDecimalSeparator((double)_resource.Amount)
         );
       }

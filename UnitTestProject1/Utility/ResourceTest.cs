@@ -51,13 +51,32 @@ namespace UnitTestProject1.Utility
     [TestMethod]
     public void ResourceDisplayItem()
     {
-      // todo: Render should use maximum amount value to calculate bar size
       ResourceDisplayContext ctx = new ResourceDisplayContext();
       ctx.MaxAmount = (MyFixedPoint)12000.22;
+      ctx.BarWidth = 11;
       Assert.AreEqual("Ice      (|||||||||||)  12000.22", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)12000.22)).Render(ctx));
       Assert.AreEqual("Ice      (|||||......)   5021.59", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)5021.59)).Render(ctx));
       Assert.AreEqual("Ice      (...........)     77.1 ", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)77.1)).Render(ctx));
       Assert.AreEqual("Ice      (|..........)   1034   ", new ResourceItem(new Resource(ResourceType.Ice, 1034)).Render(ctx));
     }
+
+    [TestMethod]
+    public void ResourceDisplayItem2()
+    {
+      ResourceDisplayContext ctx = new ResourceDisplayContext();
+      ctx.MaxAmount = (MyFixedPoint)10000;
+      ctx.BarWidth = 8;
+      Assert.AreEqual("Ice      (||||....)   5000   ", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)5000)).Render(ctx));
+      Assert.AreEqual("Ice      (||......)   2500   ", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)2500)).Render(ctx));
+    }
+
+    /*
+    [TestMethod]
+    public void ResourceDisplay()
+    {
+      ResourceDisplayContext ctx = new ResourceDisplayContext();
+
+    }
+    */
   }
 }
