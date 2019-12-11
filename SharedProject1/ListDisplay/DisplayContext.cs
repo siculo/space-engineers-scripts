@@ -22,6 +22,7 @@ namespace IngameScript
 
       public DisplayContext()
       {
+        _rowWidth = 30;
       }
 
       public string RenderLevelBar(double max, double current, int barWidth, bool showPercent = false)
@@ -41,12 +42,25 @@ namespace IngameScript
         return string.Format("({0})", new String(' ', barWidth));
       }
 
-      public string AllignToDecimalSeparator(double value)
+      public string FormatInt(int value, int space)
       {
-        string[] parts = string.Format(EnUS, "{0}", Math.Round(value, 2)).Split('.');
-        string intPart = parts[0];
-        string decPart = parts.Length > 1 ? "." + parts[1] : "";
-        return string.Format("{0, 6}{1, -3}", intPart, decPart);
+        return string.Format("{0," + space + "}", value);
+      }
+
+      public string FormatDouble(double value, int space, int decimalDigits = 2)
+      {
+        if (decimalDigits > 0)
+        {
+          int intPartSpace = space - decimalDigits - 1;
+          string[] parts = string.Format(EnUS, "{0}", Math.Round(value, decimalDigits)).Split('.');
+          string intPart = parts[0];
+          string decPart = parts.Length > 1 ? "." + parts[1] : "";
+          return string.Format("{0," + intPartSpace + "}{1, -" + (decimalDigits + 1) + "}", intPart, decPart);
+        }
+        else
+        {
+          return FormatInt((int)value, space);
+        }
       }
     }
   }

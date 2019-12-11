@@ -18,9 +18,9 @@ namespace IngameScript
      *  [x] summary of a container with more resources of the same types
      *  [x] summary of a container with more resources of different types
      *  [x] summary of some containers with resources of different types
-     *  [-] all types of resources
      *  
      *  [-] in-game display of resource summary
+     *  [-] all types of resources
      */
     [TestClass]
     public class ContainerTest

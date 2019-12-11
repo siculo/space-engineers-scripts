@@ -10,11 +10,16 @@ namespace IngameScript
     public class ResourceDisplayContext : DisplayContext
     {
       public MyFixedPoint MaxAmount { get; set; }
-      public int BarWidth { get; set; }
+      public int ResourceNameSpace { get; set; }
+      public int AmountSpace { get; set; }
+      public int AmountDecimalDigits { get; set; }
 
       public ResourceDisplayContext()
       {
         MaxAmount = 0;
+        ResourceNameSpace = 10;
+        AmountSpace = 10;
+        AmountDecimalDigits = 2;
       }
     }
   }

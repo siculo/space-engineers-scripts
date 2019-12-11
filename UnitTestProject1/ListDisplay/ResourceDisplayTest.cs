@@ -9,7 +9,6 @@ namespace IngameScript
 
   /*
   * TODO:
-  *  [-] parametric number of decimal digits in DisplayContext.allignToDecimalSeparator
   *  [-] DisplayContext with constructor for properties initial values (properties should be R/O?)
   *  [-] generic display context that does not belongs to ListDisplay (se è il caso fare ListDisplayContext : DisplayContext)
   *  [?] move label property from ListDisplay to DisplayContext
@@ -34,15 +33,27 @@ namespace IngameScript
     }
 
     [TestMethod]
-    public void ResourceDisplayItem()
+    public void ResourceItemDisplay()
     {
       ResourceDisplayContext ctx = new ResourceDisplayContext();
-      ctx.MaxAmount = (MyFixedPoint)12000.22;
-      ctx.BarWidth = 11;
-      Assert.AreEqual("Ice      (|||||||||||)  12000.22", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)12000.22)).Render(ctx));
-      Assert.AreEqual("Ice      (|||||......)   5021.59", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)5021.59)).Render(ctx));
-      Assert.AreEqual("Ice      (...........)     77.1 ", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)77.1)).Render(ctx));
-      Assert.AreEqual("Ice      (|..........)   1034   ", new ResourceItem(new Resource(ResourceType.Ice, 1034)).Render(ctx));
+      ctx.RowWidth = 33;
+      ctx.ResourceNameSpace = 9;
+      ctx.AmountSpace = 10;
+      ctx.MaxAmount = (MyFixedPoint)12000.225;
+      ctx.AmountDecimalDigits = 3;
+      Assert.AreEqual("Ice       (||||||||||)  12000.225", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)12000.225)).Render(ctx));
+      Assert.AreEqual("Gold      (||||......)   5021.59 ", new ResourceItem(new Resource(ResourceType.Gold, (MyFixedPoint)5021.59)).Render(ctx));
+      Assert.AreEqual("Ice       (..........)     77.1  ", new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)77.1)).Render(ctx));
+      Assert.AreEqual("Magnesium (|.........)   1034    ", new ResourceItem(new Resource(ResourceType.Magnesium, 1034)).Render(ctx));
+    }
+
+    [TestMethod]
+    public void ResourceItemDisplayIntAmount()
+    {
+      ResourceDisplayContext ctx = new ResourceDisplayContext();
+      ctx.MaxAmount = (MyFixedPoint)100000;
+      ctx.AmountDecimalDigits = 0;
+      Assert.AreEqual("Silver     (||||||)     100000", new ResourceItem(new Resource(ResourceType.Silver, (MyFixedPoint)100000)).Render(ctx));
     }
 
     [TestMethod]
@@ -50,17 +61,16 @@ namespace IngameScript
     {
       ResourceDisplayContext ctx = new ResourceDisplayContext();
       ctx.RowWidth = 30;
+      ctx.ResourceNameSpace = 10;
+      ctx.AmountSpace = 8;
       ctx.MaxAmount = (MyFixedPoint)10000;
-      ctx.BarWidth = 8;
+      ctx.AmountDecimalDigits = 2;
       ResourceDisplay display = new ResourceDisplay(ctx);
-      Resource resource = new Resource(ResourceType.Ice, (MyFixedPoint)5000);
-      ResourceItem resourceItem = new ResourceItem(resource);
-      ResourceItem[] items = new ResourceItem[] { resourceItem };
-      string result = display.Show(items);
+      string result = display.Show(new ResourceItem[] { new ResourceItem(new Resource(ResourceType.Ice, (MyFixedPoint)5000)) });
       string expected =
         "[Resources]" + NL +
         "------------------------------" + NL +
-        "Ice      (||||....)   5000   ";
+        "Ice        (||||....)  5000   ";
       Assert.AreEqual(expected, result);
     }
   }

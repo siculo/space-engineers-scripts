@@ -16,6 +16,7 @@ namespace IngameScript
     {
       public ResourceType Type { get; private set; }
       public MyFixedPoint Amount {  get; private set; }
+      public string Name { get { return Type.ToString(); } }
 
       public Resource(ResourceType type): this(type, 0)
       {
