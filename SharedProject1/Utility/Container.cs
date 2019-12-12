@@ -8,7 +8,7 @@ namespace IngameScript
   {
     interface Container
     {
-      Summary GetResourceSummary();
+      IEnumerable<Resource> GetResources();
     }
 
   }

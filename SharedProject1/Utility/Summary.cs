@@ -16,7 +16,7 @@ namespace IngameScript
         Summary accumulated = new Summary();
         foreach (Container c in containers)
         {
-          accumulated = c.GetResourceSummary() + accumulated;
+          accumulated = accumulated + c.GetResources();
         }
         return accumulated;
       }
@@ -41,6 +41,11 @@ namespace IngameScript
       public static Summary operator +(Summary a, Summary b)
       {
         return new Summary(a.GetResources().Concat(b.GetResources()));
+      }
+
+      public static Summary operator +(Summary a, IEnumerable<Resource> b)
+      {
+        return a + new Summary(b);
       }
 
       public override bool Equals(object obj)

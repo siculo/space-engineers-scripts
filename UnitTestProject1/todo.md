@@ -7,7 +7,7 @@
   - [x] summary of a container with more resources of different types
   - [x] summary of some containers with resources of different types
   - [x] move static method ContainerSummary inside Summary?
-  - [ ] container returns a sequence of resources, not a summary
+  - [x] container returns a sequence of resources instead of a summary
   - [ ] map in-game container to abstract container
   - [ ] find all containers
   - [ ] in-game display of resource summary

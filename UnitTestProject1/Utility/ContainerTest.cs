@@ -18,7 +18,7 @@ namespace IngameScript
       public void TestResources()
       {
         Container container = new TestContainer(new Resource(ResourceType.Ice));
-        Summary summary = container.GetResourceSummary();
+        Summary summary = new Summary(container.GetResources());
         Assert.IsTrue(Enumerable.SequenceEqual(new List<Resource>() { new Resource(ResourceType.Ice) }, summary.GetResources()));
       }
 
@@ -93,9 +93,9 @@ namespace IngameScript
         }
       }
 
-      public Summary GetResourceSummary()
+      public IEnumerable<Resource> GetResources()
       {
-        return new Summary(_resources);
+        return _resources;
       }
     }
   }

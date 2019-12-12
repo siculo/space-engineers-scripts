@@ -12,9 +12,8 @@ namespace IngameScript
   {
     class MyContainer : Container
     {
-      public Summary GetResourceSummary()
-      {
-        return new Summary();
+      public IEnumerable<Resource> GetResources() { 
+        return new List<Resource>();
       }
     }
   }
