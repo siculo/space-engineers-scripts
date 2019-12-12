@@ -6,13 +6,6 @@ using VRage;
 namespace IngameScript
 {
   [TestClass]
-
-  /*
-  * TODO:
-  *  [-] DisplayContext with constructor for properties initial values (properties should be R/O?)
-  *  [-] generic display context that does not belongs to ListDisplay (se è il caso fare ListDisplayContext : DisplayContext)
-  *  [?] move label property from ListDisplay to DisplayContext
-  */
   public class ResourceDisplayTest
   {
     private static readonly string NL = Environment.NewLine;

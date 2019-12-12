@@ -1,0 +1,22 @@
+﻿### Todo
+
+- [ ] Resources Summary Display
+  - [x] summary of a container with only one resource
+  - [x] summary of some containers with only one resource of the same type
+  - [x] summary of a container with more resources of the same types
+  - [x] summary of a container with more resources of different types
+  - [x] summary of some containers with resources of different types
+  - [x] move static method ContainerSummary inside Summary?
+  - [ ] container returns a sequence of resources, not a summary
+  - [ ] map in-game container to abstract container
+  - [ ] find all containers
+  - [ ] in-game display of resource summary
+  - [ ] all types of resources
+  - [ ] ContainerTest -> ResourcesTest
+- [ ] Clean up project layout
+  - [ ] UntitledTestProject1 -> TestProject
+  - [ ] SharedProject1 -> SharedProject
+  - [ ] Use prefix for ingame-script project names
+- [ ] DisplayContext with constructor for properties initial values (properties should be R/O?)
+- [ ] generic display context that does not belongs to ListDisplay (se è il caso fare ListDisplayContext : DisplayContext)
+- [ ] move label property from ListDisplay to DisplayContext (?)

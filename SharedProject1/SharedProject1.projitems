@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Resource\ResourceItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListDisplay\Resource\ResourceDisplayContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Container.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Game\MyContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Resource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Summary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\TextOuput.cs" />
@@ -41,6 +42,5 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)ControlPanel\Game\" />
     <Folder Include="$(MSBuildThisFileDirectory)ListDisplay\Resource\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Utility\Game\" />
   </ItemGroup>
 </Project>

@@ -11,6 +11,16 @@ namespace IngameScript
     {
       private readonly Dictionary<ResourceType, Resource> _resources;
 
+      public static Summary ContainersSummary(IEnumerable<Container> containers)
+      {
+        Summary accumulated = new Summary();
+        foreach (Container c in containers)
+        {
+          accumulated = c.GetResourceSummary() + accumulated;
+        }
+        return accumulated;
+      }
+
       public Summary(IEnumerable<Resource> resources = null)
       {
         if (resources == null)

@@ -11,14 +11,5 @@ namespace IngameScript
       Summary GetResourceSummary();
     }
 
-    static Summary ContainersSummary(IEnumerable<Container> containers)
-    {
-      Summary accumulated = new Summary();
-      foreach (Container c in containers)
-      {
-        accumulated = c.GetResourceSummary() + accumulated;
-      }
-      return accumulated;
-    }
   }
 }

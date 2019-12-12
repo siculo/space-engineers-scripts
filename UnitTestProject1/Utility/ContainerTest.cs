@@ -11,17 +11,6 @@ namespace IngameScript
 {
   partial class Program
   {
-    /*
-     * TODO:
-     *  [x] summary of a container with only one resource
-     *  [x] summary of some containers with only one resource of the same type
-     *  [x] summary of a container with more resources of the same types
-     *  [x] summary of a container with more resources of different types
-     *  [x] summary of some containers with resources of different types
-     *  
-     *  [-] in-game display of resource summary
-     *  [-] all types of resources
-     */
     [TestClass]
     public class ContainerTest
     {
@@ -75,7 +64,7 @@ namespace IngameScript
           empty, oneResource, twoResources, someResources
         };
 
-        Summary summary = ContainersSummary(containers);
+        Summary summary = Summary.ContainersSummary(containers);
         Assert.AreEqual(
           new Summary(new Resource[] {
             new Resource(ResourceType.Ice, 48),
