@@ -12,7 +12,6 @@ namespace IngameScript
     public Program()
     {
       ctx = new ResourceDisplayContext();
-      ctx.BarWidth = 10;
       ctx.RowWidth = 33;
       display = new ResourceDisplay(ctx);
       resourceInfo = new ListDisplayItem<ResourceDisplayContext>[] { };
