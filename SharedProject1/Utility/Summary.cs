@@ -48,6 +48,16 @@ namespace IngameScript
         return a + new Summary(b);
       }
 
+      internal float GetMaximum()
+      {
+        float max = 0;
+        foreach(Resource resource in GetResources())
+        {
+          max = Math.Max((float)resource.Amount, max);
+        }
+        return max;
+      }
+
       public override bool Equals(object obj)
       {
         return this.Equals(obj as Summary);

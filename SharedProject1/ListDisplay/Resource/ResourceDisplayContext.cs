@@ -13,6 +13,7 @@ namespace IngameScript
       public int ResourceNameSpace { get; set; }
       public int AmountSpace { get; set; }
       public int AmountDecimalDigits { get; set; }
+      public int ResourceTypeSpace { get; set; }
 
       public ResourceDisplayContext()
       {
@@ -20,6 +21,7 @@ namespace IngameScript
         ResourceNameSpace = 10;
         AmountSpace = 10;
         AmountDecimalDigits = 2;
+        ResourceTypeSpace = 0;
       }
     }
   }

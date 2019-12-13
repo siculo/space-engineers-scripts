@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
 
 namespace IngameScript
 {
@@ -16,6 +19,11 @@ namespace IngameScript
       }
 
       public string Show(params ListDisplayItem<C>[] rowDisplays)
+      {
+        return this.Show(rowDisplays.ToList());
+      }
+
+      public string Show(IEnumerable<ListDisplayItem<C>> rowDisplays)
       {
         System.Text.StringBuilder result = new System.Text.StringBuilder();
         result.AppendLine("[" + _label + "]");

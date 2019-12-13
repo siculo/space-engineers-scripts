@@ -8,11 +8,16 @@
   - [x] summary of some containers with resources of different types
   - [x] move static method ContainerSummary inside Summary?
   - [x] container returns a sequence of resources instead of a summary
-  - [ ] map in-game container to abstract container
+  - [x] map in-game container to abstract container
+  - [x] in-game display of resource summary
+  - [ ] duplicated resource bug
   - [ ] find all containers
-  - [ ] in-game display of resource summary
-  - [ ] all types of resources
+  - [ ] display shorten type and subtype names
+  - [ ] support blocks with more than one inventory
+  - [ ] Optional resource item rendering without bar
+  - [ ] Resource display with option to choose resource type to show
   - [ ] ContainerTest -> ResourcesTest
+  - [ ] Display contains resource summary configuration
 - [ ] Clean up project layout
   - [ ] UntitledTestProject1 -> TestProject
   - [ ] SharedProject1 -> SharedProject
@@ -20,3 +25,4 @@
 - [ ] DisplayContext with constructor for properties initial values (properties should be R/O?)
 - [ ] generic display context that does not belongs to ListDisplay (se è il caso fare ListDisplayContext : DisplayContext)
 - [ ] move label property from ListDisplay to DisplayContext (?)
+- [ ] My is not a good prefix for game facade classes
