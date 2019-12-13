@@ -10,14 +10,14 @@
   - [x] container returns a sequence of resources instead of a summary
   - [x] map in-game container to abstract container
   - [x] in-game display of resource summary
+  - [x] display shorten type and subtype names
   - [ ] duplicated resource bug
-  - [ ] find all containers
-  - [ ] display shorten type and subtype names
-  - [ ] support blocks with more than one inventory
-  - [ ] Optional resource item rendering without bar
-  - [ ] Resource display with option to choose resource type to show
-  - [ ] ContainerTest -> ResourcesTest
+  - [ ] spinning bar
   - [ ] Display contains resource summary configuration
+  - [ ] Resource type filter in summary
+  - [ ] support blocks with more than one inventory
+  - [ ] Resource bar is optional
+  - [ ] ContainerTest -> ResourcesTest
 - [ ] Clean up project layout
   - [ ] UntitledTestProject1 -> TestProject
   - [ ] SharedProject1 -> SharedProject
