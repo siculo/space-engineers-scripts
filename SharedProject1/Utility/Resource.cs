@@ -27,7 +27,30 @@ namespace IngameScript
         TypeId = typeId;
         SubtypeId = subtypeId;
       }
-      
+
+      public override bool Equals(object that)
+      {
+        if (Object.ReferenceEquals(that, null))
+        {
+          return false;
+        }
+        if (Object.ReferenceEquals(this, that))
+        {
+          return true;
+        }
+        if (this.GetType() != that.GetType())
+        {
+          return false;
+        }
+        ResourceType thatResourceType = that as ResourceType;
+        return this.TypeId.Equals(thatResourceType.TypeId) && this.SubtypeId.Equals(thatResourceType.SubtypeId);
+      }
+
+      public override int GetHashCode()
+      {
+        return this.TypeId.GetHashCode() * 0x00010000 + this.SubtypeId.GetHashCode(); ;
+      }
+
       public int CompareTo(object obj)
       {
         if (obj == null) return 1;
@@ -43,6 +66,7 @@ namespace IngameScript
         }
         else throw new ArgumentException("Object is not a ResourceType");
       }
+
       private string GetTypeName(string typeId)
       {
         string typeKey = typeId.StartsWith(_prefix) ? typeId.Substring(_prefix.Length) : typeId;
@@ -91,7 +115,7 @@ namespace IngameScript
         {
           return false;
         }
-        return (Type == that.Type) && (Amount == that.Amount);
+        return (Type.Equals(that.Type)) && (Amount.Equals(that.Amount));
       }
 
       public override int GetHashCode()

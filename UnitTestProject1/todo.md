@@ -11,8 +11,8 @@
   - [x] map in-game container to abstract container
   - [x] in-game display of resource summary
   - [x] display shorten type and subtype names
-  - [ ] duplicated resource bug
-  - [ ] spinning bar
+  - [x] duplicated resource bug
+  - [x] spinning bar
   - [ ] Display contains resource summary configuration
   - [ ] Resource type filter in summary
   - [ ] support blocks with more than one inventory

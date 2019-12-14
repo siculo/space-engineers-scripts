@@ -26,20 +26,20 @@ namespace IngameScript
       display2 = new EnergyDisplay(ctx2);
 
       energyInfo1 = new EnergyItem[] {
-            MyPowerProductionItem.Find(GridTerminalSystem, "reattore_1"),
-            MyBatteryItem.Find(GridTerminalSystem, "Batteria_1"),
-            MyBatteryItem.Find(GridTerminalSystem, "Batteria_2"),
-            MyBatteryItem.Find(GridTerminalSystem, "Batteria_3"),
-            MyBatteryItem.Find(GridTerminalSystem, "Batteria_4")
+            MyPowerProductionItem.Find(GridTerminalSystem, "BA1_reattore_1"),
+            MyBatteryItem.Find(GridTerminalSystem, "BA1_Batteria_1"),
+            MyBatteryItem.Find(GridTerminalSystem, "BA1_Batteria_2"),
+            MyBatteryItem.Find(GridTerminalSystem, "BA1_Batteria_3"),
+            MyBatteryItem.Find(GridTerminalSystem, "BA1_Batteria_4")
             };
       energyInfo2 = new EnergyItem[] {
-            MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_1"),
-            MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_2"),
-            MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_3"),
-            MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_4"),
-            MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_5"),
-            MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_6"),
-            MyPowerProductionItem.Find(GridTerminalSystem, "pannello_solare_7")
+            MyPowerProductionItem.Find(GridTerminalSystem, "BA1_pannello_solare_1"),
+            MyPowerProductionItem.Find(GridTerminalSystem, "BA1_pannello_solare_2"),
+            MyPowerProductionItem.Find(GridTerminalSystem, "BA1_pannello_solare_3"),
+            MyPowerProductionItem.Find(GridTerminalSystem, "BA1_pannello_solare_4"),
+            MyPowerProductionItem.Find(GridTerminalSystem, "BA1_pannello_solare_5"),
+            MyPowerProductionItem.Find(GridTerminalSystem, "BA1_pannello_solare_6"),
+            MyPowerProductionItem.Find(GridTerminalSystem, "BA1_pannello_solare_7")
             };
       Runtime.UpdateFrequency = UpdateFrequency.Update100;
     }

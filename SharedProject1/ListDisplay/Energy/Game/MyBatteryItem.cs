@@ -1,4 +1,6 @@
 ﻿using Sandbox.ModAPI.Ingame;
+using VRage.Game.ModAPI.Ingame.Utilities;
+using SpaceEngineers.Game.ModAPI.Ingame;
 
 namespace IngameScript
 {
@@ -10,7 +12,12 @@ namespace IngameScript
 
       public static MyBatteryItem Find(IMyGridTerminalSystem gts, string name)
       {
-        return new MyBatteryItem(gts.GetBlockWithName(name) as IMyBatteryBlock);
+        IMyBatteryBlock batteryBlock = gts.GetBlockWithName(name) as IMyBatteryBlock;
+        if (batteryBlock == null)
+        {
+          return null;
+        }
+        return new MyBatteryItem(batteryBlock);
       }
 
       public MyBatteryItem(IMyBatteryBlock block)

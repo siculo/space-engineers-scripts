@@ -10,7 +10,12 @@ namespace IngameScript
 
       public static MyPowerProductionItem Find(IMyGridTerminalSystem gts, string name)
       {
-        return new MyPowerProductionItem(gts.GetBlockWithName(name) as IMyPowerProducer);
+        IMyPowerProducer powerProducer = gts.GetBlockWithName(name) as IMyPowerProducer;
+        if (powerProducer == null)
+        {
+          return null;
+        }
+        return new MyPowerProductionItem(powerProducer);
       }
 
       public MyPowerProductionItem(IMyPowerProducer block)

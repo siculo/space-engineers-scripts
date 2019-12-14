@@ -42,7 +42,10 @@ namespace IngameScript
 
       private Resource ConvertToResource(MyInventoryItem item)
       {
-        return new Resource(new ResourceType(item.Type.TypeId, item.Type.SubtypeId), item.Amount);
+        ResourceType resourceType = new ResourceType(item.Type.TypeId, item.Type.SubtypeId);
+        //if (resourceType.TypeName != "Ore")
+        //  return null;
+        return new Resource(resourceType, item.Amount);
       }
     }
   }

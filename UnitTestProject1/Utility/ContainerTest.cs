@@ -14,72 +14,87 @@ namespace IngameScript
     [TestClass]
     public class ContainerTest
     {
-      private ResourceType Ice = new ResourceType("", "Ice");
-      private ResourceType Iron = new ResourceType("", "Iron");
-      private ResourceType Gold = new ResourceType("", "Gold");
-      private ResourceType Silver = new ResourceType("", "Silver");
+      [TestMethod]
+      public void TestCompareResourceTypes()
+      {
+        Assert.AreEqual(new ResourceType("Ingot", "Iron"), new ResourceType("Ingot", "Iron"));
+        Assert.AreNotEqual(new ResourceType("Ore", "Iron"), new ResourceType("Ingot", "Iron"));
+      }
 
       [TestMethod]
-      public void TestResources()
+      public void TestCompareContainerResources()
       {
-        Container container = new TestContainer(new Resource(Ice));
-        Summary summary = new Summary(container.GetResources());
-        Assert.IsTrue(Enumerable.SequenceEqual(new List<Resource>() { new Resource(Ice) }, summary.GetResources()));
+        Summary summary = new Summary(new TestContainer(new Resource(new ResourceType("", "Ice"))).GetResources());
+        Assert.IsTrue(Enumerable.SequenceEqual(new List<Resource>() { new Resource(new ResourceType("", "Ice")) }, summary.GetResources()));
       }
 
       [TestMethod]
       public void TestSummaryEquals()
       {
         Assert.AreEqual(
-          new Summary(new List<Resource>() { new Resource(Ice), new Resource(Gold, 22), new Resource(Iron, 7) }),
-          new Summary(new List<Resource>() { new Resource(Iron, 7), new Resource(Ice), new Resource(Gold, 22) })
+          new Summary(new List<Resource>() { new Resource(new ResourceType("Ore", "Ice")), new Resource(new ResourceType("Ingot", "Gold"), 22), new Resource(new ResourceType("Ingot", "Iron"), 7) }),
+          new Summary(new List<Resource>() { new Resource(new ResourceType("Ingot", "Iron"), 7), new Resource(new ResourceType("Ore", "Ice")), new Resource(new ResourceType("Ingot", "Gold"), 22) })
           );
       }
 
       [TestMethod]
       public void TestConsolidateSummary()
       {
-        Summary summary = new Summary(new List<Resource>() { new Resource(Ice, 22), new Resource(Ice, 14) });
-        Assert.IsTrue(Enumerable.SequenceEqual(new List<Resource>() { new Resource(Ice, 14 + 22) }, summary.GetResources()));
+        Summary summary = new Summary(new List<Resource>() { new Resource(new ResourceType("", "Ice"), 22), new Resource(new ResourceType("", "Ice"), 14) });
+        Assert.IsTrue(Enumerable.SequenceEqual(new List<Resource>() { new Resource(new ResourceType("", "Ice"), 14 + 22) }, summary.GetResources()));
       }
 
       [TestMethod]
       public void TestSummaryAddition()
       {
-        Summary summaryA = new Summary(new List<Resource>() { new Resource(Ice, 20) });
-        Summary summaryB = new Summary(new List<Resource>() { new Resource(Ice, 50) });
+        Summary summaryA = new Summary(new List<Resource>() { new Resource(new ResourceType("Ore", "Ice"), 20) });
+        Summary summaryB = new Summary(new List<Resource>() { new Resource(new ResourceType("Ore", "Ice"), 50) });
         Summary summaryC = summaryA + summaryB;
-        Assert.IsTrue(Enumerable.SequenceEqual(new List<Resource>() { new Resource(Ice, 70) }, summaryC.GetResources()));
+        Assert.IsTrue(Enumerable.SequenceEqual(new List<Resource>() { new Resource(new ResourceType("Ore", "Ice"), 70) }, summaryC.GetResources()));
       }
 
       [TestMethod]
       public void TestFullSummary()
       {
-        Container empty = new TestContainer();
-        Container oneResource = new TestContainer(new Resource(Ice, 40));
-        Container twoResources = new TestContainer(new Resource(Iron, 15), new Resource(Gold, 25));
-        Container someResources = new TestContainer(
-          new Resource(Iron, 5),
-          new Resource(Ice, 8),
-          new Resource(Gold, 2),
-          new Resource(Silver, 14)
+        Container container1 = new TestContainer();
+        Container container2 = new TestContainer(new Resource(new ResourceType("Ore", "Ice"), 40), new Resource(new ResourceType("Ore", "Iron"), 77));
+        Container container3 = new TestContainer(new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ingot", "Gold"), 25));
+        Container container4 = new TestContainer(
+          new Resource(new ResourceType("Ingot", "Iron"), 5),
+          new Resource(new ResourceType("Ore", "Ice"), 8),
+          new Resource(new ResourceType("Ingot", "Gold"), 2),
+          new Resource(new ResourceType("Ore", "Silver"), 14)
         );
         Container[] containers = new Container[]
         {
-          empty, oneResource, twoResources, someResources
+          container1, container2, container3, container4
         };
 
         Summary summary = Summary.ContainersSummary(containers);
         Assert.AreEqual(
           new Summary(new Resource[] {
-            new Resource(Ice, 48),
-            new Resource(Iron, 20),
-            new Resource(Gold, 27),
-            new Resource(Silver, 14)
+            new Resource(new ResourceType("Ore", "Ice"), 48),
+            new Resource(new ResourceType("Ingot", "Iron"), 20),
+            new Resource(new ResourceType("Ingot", "Gold"), 27),
+            new Resource(new ResourceType("Ore", "Silver"), 14),
+            new Resource(new ResourceType("Ore", "Iron"), 77)
           }),
           summary
           );
-        Assert.AreEqual(48, summary.GetMaximum());
+      }
+
+      [TestMethod]
+      public void TestSummaryMaximum()
+      {
+        Summary summary = new Summary(new Resource[] {
+            new Resource(new ResourceType("Ore", "Ice"), 48),
+            new Resource(new ResourceType("Ingot", "Iron"), 20),
+            new Resource(new ResourceType("Ingot", "Gold"), 27),
+            new Resource(new ResourceType("Ore", "Silver"), 14),
+            new Resource(new ResourceType("Ingot", "Iron"), 66),
+            new Resource(new ResourceType("Ore", "Iron"), 12)
+          });
+        Assert.AreEqual(86, summary.GetMaximum());
       }
     }
 

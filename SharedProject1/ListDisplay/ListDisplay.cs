@@ -26,11 +26,14 @@ namespace IngameScript
       public string Show(IEnumerable<ListDisplayItem<C>> rowDisplays)
       {
         System.Text.StringBuilder result = new System.Text.StringBuilder();
-        result.AppendLine("[" + _label + "]");
+        result.AppendLine(string.Format("[{0} {1}]", _label, _ctx.Bar));
         result.Append(_ctx.HR);
         foreach (ListDisplayItem<C> rd in rowDisplays)
         {
-          result.Append(Environment.NewLine + rd.Render(_ctx));
+          if (rd != null)
+          {
+            result.Append(Environment.NewLine + rd.Render(_ctx));
+          }
         }
         _ctx.Bar.Step();
         return result.ToString();
