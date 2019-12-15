@@ -11,14 +11,11 @@ namespace IngameScript
     {
       private readonly Dictionary<ResourceType, Resource> _resources;
 
-      public static Summary ContainersSummary(IEnumerable<Container> containers)
+      public static Summary ContainersSummary(IEnumerable<Container> containers, string tags = null)
       {
-        Summary accumulated = new Summary();
-        foreach (Container c in containers)
-        {
-          accumulated = accumulated + c.GetResources();
-        }
-        return accumulated;
+        List<string> tagsList = Tags.SplitToTags(tags);
+        IEnumerable<Container> filtered = containers.Where(c => c.HasTags(tagsList));
+        return filtered.Aggregate(new Summary(), (summary, c) => summary + c.GetResources());
       }
 
       public Summary(IEnumerable<Resource> resources = null)
@@ -56,6 +53,23 @@ namespace IngameScript
           max = Math.Max((float)resource.Amount, max);
         }
         return max;
+      }
+
+      public override string ToString()
+      {
+        string msg = "";
+        foreach (Resource res in GetResources())
+        {
+          if (msg.Length == 0)
+          {
+            msg = res.ToString();
+          }
+          else
+          {
+            msg = msg + ", " + res.ToString();
+          }
+        }
+        return "Summary: " + msg;
       }
 
       public override bool Equals(object obj)

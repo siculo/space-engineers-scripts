@@ -24,7 +24,7 @@ namespace IngameScript
       [TestMethod]
       public void TestCompareContainerResources()
       {
-        Summary summary = new Summary(new TestContainer(new Resource(new ResourceType("", "Ice"))).GetResources());
+        Summary summary = new Summary(new TestContainer(new Resource[] { new Resource(new ResourceType("", "Ice")) }).GetResources());
         Assert.IsTrue(Enumerable.SequenceEqual(new List<Resource>() { new Resource(new ResourceType("", "Ice")) }, summary.GetResources()));
       }
 
@@ -56,20 +56,20 @@ namespace IngameScript
       [TestMethod]
       public void TestFullSummary()
       {
-        Container container1 = new TestContainer();
-        Container container2 = new TestContainer(new Resource(new ResourceType("Ore", "Ice"), 40), new Resource(new ResourceType("Ore", "Iron"), 77));
-        Container container3 = new TestContainer(new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ingot", "Gold"), 25));
-        Container container4 = new TestContainer(
-          new Resource(new ResourceType("Ingot", "Iron"), 5),
-          new Resource(new ResourceType("Ore", "Ice"), 8),
-          new Resource(new ResourceType("Ingot", "Gold"), 2),
-          new Resource(new ResourceType("Ore", "Silver"), 14)
-        );
         Container[] containers = new Container[]
         {
-          container1, container2, container3, container4
+          new TestContainer(null),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Ice"), 40), new Resource(new ResourceType("Ore", "Iron"), 77) }),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ingot", "Gold"), 25) }),
+          new TestContainer(
+            new Resource[] {
+              new Resource(new ResourceType("Ingot", "Iron"), 5),
+              new Resource(new ResourceType("Ore", "Ice"), 8),
+              new Resource(new ResourceType("Ingot", "Gold"), 2),
+              new Resource(new ResourceType("Ore", "Silver"), 14)
+            }
+          ) 
         };
-
         Summary summary = Summary.ContainersSummary(containers);
         Assert.AreEqual(
           new Summary(new Resource[] {
@@ -79,6 +79,49 @@ namespace IngameScript
             new Resource(new ResourceType("Ore", "Silver"), 14),
             new Resource(new ResourceType("Ore", "Iron"), 77)
           }),
+          summary
+          );
+      }
+
+      [TestMethod]
+      public void TestContainersWithOneTagSummary()
+      {
+        Container[] containers = new Container[]
+        {
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Ice"), 40), new Resource(new ResourceType("Ore", "Iron"), 77) }),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ore", "Iron"), 25) }, "tag"),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Gold"), 35) }, "tag")
+        };
+        Summary summary = Summary.ContainersSummary(containers, "tag");
+        Assert.AreEqual(
+          new Summary(new Resource[]
+          {
+            new Resource(new ResourceType("Ingot", "Iron"), 15),
+            new Resource(new ResourceType("Ore", "Iron"), 25),
+            new Resource(new ResourceType("Ore", "Gold"), 35)
+          }
+          ),
+          summary
+          );
+      }
+
+      [TestMethod]
+      public void TestContainersWithSomeTagsSummary()
+      {
+        Container[] containers = new Container[]
+        {
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Ice"), 40), new Resource(new ResourceType("Ore", "Iron"), 77) }, "tag2,tag3"),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ore", "Iron"), 25) }, "tag1, tag2,tag4"),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Gold"), 35) }, "tag1")
+        };
+        Summary summary = Summary.ContainersSummary(containers, "tag2, tag1");
+        Assert.AreEqual(
+          new Summary(new Resource[]
+          {
+            new Resource(new ResourceType("Ingot", "Iron"), 15),
+            new Resource(new ResourceType("Ore", "Iron"), 25)
+          }
+          ),
           summary
           );
       }
@@ -102,7 +145,7 @@ namespace IngameScript
     {
       private IEnumerable<Resource> _resources;
 
-      public TestContainer(params Resource[] resources)
+      public TestContainer(Resource[] resources, string tags = null): base(tags)
       {
         if (resources == null)
         {
@@ -114,7 +157,7 @@ namespace IngameScript
         }
       }
 
-      public IEnumerable<Resource> GetResources()
+      override public IEnumerable<Resource> GetResources()
       {
         return _resources;
       }

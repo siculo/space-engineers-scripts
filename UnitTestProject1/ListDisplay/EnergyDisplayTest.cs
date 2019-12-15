@@ -17,7 +17,7 @@ namespace IngameScript
       EnergyDisplay display = new EnergyDisplay(ctx);
       string result = display.Show();
       string expected =
-        "[Energy]" + NL +
+        "[Energy -]" + NL +
         "----------------------------------";
       Assert.AreEqual(expected, result);
     }
@@ -37,7 +37,7 @@ namespace IngameScript
         new TestPowerProductionBlock("pannello_solare", 0f, 0f, true)
       );
       string expected =
-        "[Energy]" + NL +
+        "[Energy -]" + NL +
         "------------------------------------------------------------------" + NL +
         "batteria_1 [-]" + NL +
         " (||||||||..)  77% 3MWh OUT -317.29W 2.3MWh" + NL +

@@ -29,7 +29,7 @@ namespace IngameScript
         _block = block;
       }
 
-      public IEnumerable<Resource> GetResources()
+      override public IEnumerable<Resource> GetResources()
       {
         if (_block.HasInventory)
         {

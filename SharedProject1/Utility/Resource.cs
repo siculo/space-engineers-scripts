@@ -28,6 +28,11 @@ namespace IngameScript
         SubtypeId = subtypeId;
       }
 
+      public override string ToString()
+      {
+        return string.Format("({0}, {1})", TypeName, SubtypeName);
+      }
+
       public override bool Equals(object that)
       {
         if (Object.ReferenceEquals(that, null))
@@ -94,6 +99,11 @@ namespace IngameScript
       {
         Type = type;
         Amount = amout;
+      }
+
+      public override string ToString()
+      {
+        return  string.Format("({0}: {1})", Type, Amount);
       }
 
       public override bool Equals(object obj)

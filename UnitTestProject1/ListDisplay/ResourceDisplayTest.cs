@@ -71,7 +71,7 @@ namespace IngameScript
         new ResourceItem(new Resource(MagnesiumIngot, (MyFixedPoint)1334.44))
       });
       string expected =
-        "[Resources]" + NL +
+        "[Resources -]" + NL +
         "--------------------------------------" + NL +
         "Ice       (Ore)    (||||....)  5000   " + NL +
         "Magnesium (Ingot)  (|.......)  1334.44";

@@ -13,6 +13,15 @@
   - [x] display shorten type and subtype names
   - [x] duplicated resource bug
   - [x] spinning bar
+  - [ ] container filters (Summary.ContainersSummary)
+    - [x] filter by one tag
+    - [x] filter by more tags
+    - [ ] filter "not"
+  - [ ] filter resources (Summary.ContainersSummary)
+    - [ ] by typeId
+    - [ ] more than one typeId
+    - [ ] filter "not"
+    - [ ] by subtypeId
   - [ ] Display contains resource summary configuration
   - [ ] Resource type filter in summary
   - [ ] support blocks with more than one inventory
