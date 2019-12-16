@@ -22,11 +22,12 @@ namespace IngameScript
   partial class Program : MyGridProgram
   {
     ResourceDisplayContext ctx;
+    MyIni _ini;
     ResourceDisplay display;
     List<IMyTextPanel> displays;
     List<IMyTerminalBlock> blocks;
-    List<Container> containers;
-    string groupName;
+    IEnumerable<Container> containers;
+    string resources = "resources";
 
     public Program()
     {
@@ -43,42 +44,53 @@ namespace IngameScript
 
     private bool Initialize()
     {
-      MyIni _ini = new MyIni();
+      _ini = new MyIni();
       MyIniParseResult result;
       if (_ini.TryParse(Me.CustomData, out result))
       {
-        groupName = _ini.Get("resource", "group").ToString();
-        blocks = new List<IMyTerminalBlock>();
-        GridTerminalSystem.GetBlocksOfType<IMyTerminalBlock>(blocks, b => MyIni.HasSection(b.CustomData, groupName));
-        containers = new List<Container>();
-        foreach (IMyTerminalBlock block in blocks)
-        {
-          containers.Add(new MyContainer(block));
-        }
-
-        displays = new List<IMyTextPanel>();
-        GridTerminalSystem.GetBlocksOfType<IMyTextPanel>(displays, d => MyIni.HasSection(d.CustomData, "resource"));
-
-        Echo(string.Format("resource display found: {0}", displays.Count));
-        Echo(string.Format("blocks found for group {0}: {1}", groupName, blocks.Count));
-
+        InitializeContainers();
+        InitializeDisplays();
         return true;
       }
       else
       {
-        Echo("c'è un problema: " + result.Success + " " + result.Error);
+        Echo("An error occurs: <" + result.Success + "> " + result.Error);
         return false;
       }
     }
 
+    private void InitializeContainers()
+    {
+      blocks = new List<IMyTerminalBlock>();
+      GridTerminalSystem.GetBlocksOfType<IMyTerminalBlock>(blocks, b => b.HasInventory);
+      containers = blocks.Select(b => new MyContainer(b) as Container);
+    }
+
+    private void InitializeDisplays()
+    {
+      displays = new List<IMyTextPanel>();
+      GridTerminalSystem.GetBlocksOfType<IMyTextPanel>(displays, d => MyIni.HasSection(d.CustomData, resources));
+      Echo(string.Format("resource display found: {0}",  displays.Count));
+    }
+
     public void Main(string argument, UpdateType updateSource)
     {
-      Summary summary = Summary.ContainersSummary(containers);
-      ctx.MaxAmount = (MyFixedPoint)summary.GetMaximum();
-      string report = display.Show(summary.GetResources().Select(resource => new ResourceItem(resource)));
       foreach (IMyTextPanel d in displays)
       {
-        d.WriteText(report);
+        MyIni displayIni = new MyIni();
+        MyIniParseResult result;
+        if (displayIni.TryParse(d.CustomData, out result))
+        {
+          String tags = displayIni.Get(resources, "tags").ToString();
+          Summary summary = Summary.ContainersSummary(containers, tags);
+          ctx.MaxAmount = (MyFixedPoint)summary.GetMaximum();
+          string report = display.Show(summary.GetResources().Select(resource => new ResourceItem(resource)));
+          d.WriteText(report);
+        }
+        else
+        {
+          Echo("An error occurs: <" + result.Success + "> " + result.Error);
+        }
       }
     }
   }

@@ -24,9 +24,20 @@ namespace IngameScript
     class MyContainer : Container
     {
       private IMyTerminalBlock _block;
-      public MyContainer(IMyTerminalBlock block)
+      public MyContainer(IMyTerminalBlock block) : base(TagsFromConfig(block))
       {
         _block = block;
+      }
+
+      private static string TagsFromConfig(IMyTerminalBlock block)
+      {
+        MyIni _ini = new MyIni();
+        MyIniParseResult result;
+        if (_ini.TryParse(block.CustomData, out result))
+        {
+          return _ini.Get("main", "tags").ToString();
+        }
+        return null;
       }
 
       override public IEnumerable<Resource> GetResources()

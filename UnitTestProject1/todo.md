@@ -1,37 +1,43 @@
 ﻿### Todo
 
 - [ ] Resources Summary Display
-  - [x] summary of a container with only one resource
-  - [x] summary of some containers with only one resource of the same type
-  - [x] summary of a container with more resources of the same types
-  - [x] summary of a container with more resources of different types
-  - [x] summary of some containers with resources of different types
-  - [x] move static method ContainerSummary inside Summary?
-  - [x] container returns a sequence of resources instead of a summary
-  - [x] map in-game container to abstract container
-  - [x] in-game display of resource summary
-  - [x] display shorten type and subtype names
-  - [x] duplicated resource bug
-  - [x] spinning bar
-  - [ ] container filters (Summary.ContainersSummary)
-    - [x] filter by one tag
-    - [x] filter by more tags
-    - [ ] filter "not"
-  - [ ] filter resources (Summary.ContainersSummary)
-    - [ ] by typeId
-    - [ ] more than one typeId
-    - [ ] filter "not"
-    - [ ] by subtypeId
+  - [x] Summary of a container with only one resource
+  - [x] Summary of some containers with only one resource of the same type
+  - [x] Summary of a container with more resources of the same types
+  - [x] Summary of a container with more resources of different types
+  - [x] Summary of some containers with resources of different types
+  - [x] Move static method ContainerSummary inside Summary?
+  - [x] Container returns a sequence of resources instead of a summary
+  - [x] Map in-game container to abstract container
+  - [x] In-game display of resource summary
+  - [x] Display shorten type and subtype names
+  - [x] Duplicated resource bug
+  - [x] Spinning bar
+  - [x] Filter container by tags (Summary.ContainersSummary)
+    - [x] Filter by one tag
+    - [x] Filter by more tags
+    - [x] Tags from config
+  - [ ] Filter resources (Summary.ContainersSummary)
+    - [ ] By typeId
+    - [ ] More than one typeId
+    - [ ] Filter "not"
+    - [ ] By subtypeId
+  - [ ] Read display tags during initialization
+    - [ ] Use TextOutput in main script
+    - [ ] Add Tags property to TextOutput
+    - [ ] Read TextOutput tags during initialization
   - [ ] Display contains resource summary configuration
   - [ ] Resource type filter in summary
-  - [ ] support blocks with more than one inventory
+  - [ ] Support blocks with more than one inventory
   - [ ] Resource bar is optional
   - [ ] ContainerTest -> ResourcesTest
 - [ ] Clean up project layout
   - [ ] UntitledTestProject1 -> TestProject
   - [ ] SharedProject1 -> SharedProject
   - [ ] Use prefix for ingame-script project names
+- [ ] Should be TextPanelOutput linked to a IMyTextSurface instead of a IMyTextPanel?
 - [ ] DisplayContext with constructor for properties initial values (properties should be R/O?)
-- [ ] generic display context that does not belongs to ListDisplay (se è il caso fare ListDisplayContext : DisplayContext)
-- [ ] move label property from ListDisplay to DisplayContext (?)
+- [ ] ListDisplay, ResourceDisplay and EnergyDisplay are not really "display" and another name prefix whould be better
+- [ ] Generic display context that does not belongs to ListDisplay (se è il caso fare ListDisplayContext : DisplayContext)
+- [ ] Move label property from ListDisplay to DisplayContext (?)
 - [ ] My is not a good prefix for game facade classes

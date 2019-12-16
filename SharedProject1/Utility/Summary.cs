@@ -14,7 +14,7 @@ namespace IngameScript
       public static Summary ContainersSummary(IEnumerable<Container> containers, string tags = null)
       {
         List<string> tagsList = Tags.SplitToTags(tags);
-        IEnumerable<Container> filtered = containers.Where(c => c.HasTags(tagsList));
+        IEnumerable<Container> filtered = containers.Where(c => c.HasAtLeastOneTag(tagsList));
         return filtered.Aggregate(new Summary(), (summary, c) => summary + c.GetResources());
       }
 

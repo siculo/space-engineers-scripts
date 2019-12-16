@@ -16,14 +16,14 @@ namespace IngameScript
       }
       public abstract IEnumerable<Resource> GetResources();
 
-      public bool HasTags(string tags = null)
+      public bool HasAtLeastOneTag(string tags = null)
       {
-        return this.HasTags(Tags.SplitToTags(tags));
+        return this.HasAtLeastOneTag(Tags.SplitToTags(tags));
       }
 
-      public bool HasTags(IEnumerable<string> tags)
+      public bool HasAtLeastOneTag(IEnumerable<string> tags)
       {
-        return tags.Aggregate(true, (current, tag) => current && _tags.Contains(tag));
+        return (tags.Count() > 0) ? tags.Aggregate(false, (current, tag) => current || _tags.Contains(tag)) : true;
       }
     }
 

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VRage;
 using static IngameScript.Program;
 
@@ -111,19 +111,17 @@ namespace IngameScript
         Container[] containers = new Container[]
         {
           new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Ice"), 40), new Resource(new ResourceType("Ore", "Iron"), 77) }, "tag2,tag3"),
-          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ore", "Iron"), 25) }, "tag1, tag2,tag4"),
-          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Gold"), 35) }, "tag1")
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ore", "Iron"), 25) }, "tag1, tag2,tag3"),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Gold"), 35) }, "tag2, tag4")
         };
-        Summary summary = Summary.ContainersSummary(containers, "tag2, tag1");
-        Assert.AreEqual(
-          new Summary(new Resource[]
+        Summary summary = Summary.ContainersSummary(containers, "tag1, tag3");
+        Assert.AreEqual(new Summary(new Resource[]
           {
-            new Resource(new ResourceType("Ingot", "Iron"), 15),
-            new Resource(new ResourceType("Ore", "Iron"), 25)
+            new Resource(new ResourceType("Ore", "Ice"), 40),
+            new Resource(new ResourceType("Ore", "Iron"), 77 + 25),
+            new Resource(new ResourceType("Ingot", "Iron"), 15)
           }
-          ),
-          summary
-          );
+          ), summary);
       }
 
       [TestMethod]

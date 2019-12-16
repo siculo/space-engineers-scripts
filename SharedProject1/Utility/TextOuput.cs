@@ -2,9 +2,9 @@
 {
   partial class Program
   {
-    public interface TextOuput
+    public abstract class TextOuput
     {
-      void Set(string t);
+      public abstract void Set(string t);
     }
   }
 }

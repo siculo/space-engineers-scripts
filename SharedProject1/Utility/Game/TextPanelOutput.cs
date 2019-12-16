@@ -14,7 +14,7 @@ namespace IngameScript
         this.panel = p;
       }
 
-      public void Set(string t)
+      override public void Set(string t)
       {
         panel.WriteText(t);
       }
