@@ -20,6 +20,8 @@
   - [ ] Filter resources (Summary.ContainersSummary)
     - [x] By typeId
     - [x] By SubtypeId
+    - [x] Filters syntax parsing
+    - [ ] Abbreviated resource ids in filters parsing
     - [ ] Filters read from config
   - [ ] Read display tags during initialization
     - [ ] Use TextOutput in main script

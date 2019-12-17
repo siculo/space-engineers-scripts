@@ -10,11 +10,10 @@ namespace IngameScript
     class Summary
     {
       private readonly Dictionary<ResourceType, Resource> _resources;
-
-      public static Summary ContainersSummary(IEnumerable<Container> containers, string tags = null, IEnumerable<ResourceType> filter = null)
+      
+      public static Summary ContainersSummary(IEnumerable<Container> containers, IEnumerable<string> tags = null, IEnumerable<ResourceType> filter = null)
       {
-        List<string> tagsList = Tags.SplitToTags(tags);
-        IEnumerable<Container> filtered = containers.Where(c => c.HasAtLeastOneTag(tagsList));
+        IEnumerable<Container> filtered = containers.Where(c => c.HasAtLeastOneTag(tags));
         return filtered.Aggregate(new Summary(), (summary, c) => summary + ApplyFilter(c.GetResources(), filter));
       }
 

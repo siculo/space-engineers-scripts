@@ -15,6 +15,7 @@ namespace IngameScript
       public string SubtypeName { get { return GetSubtypeName(SubtypeId); } }
 
       private static string _prefix = "MyObjectBuilder_";
+
       private static Dictionary<string, string> typeNames = new Dictionary<string, string>()
       {
         ["AmmoMagazine"] = "Ammo",
@@ -31,11 +32,11 @@ namespace IngameScript
 
       public bool Match(ResourceType filter)
       {
-        if (filter.TypeId != null && !filter.TypeId.Equals(this.TypeId))
+        if (filter.TypeId != null && !filter.TypeId.Equals(this.TypeId, StringComparison.OrdinalIgnoreCase))
         {
           return false;
         }
-        if (filter.SubtypeId != null && !filter.SubtypeId.Equals(this.SubtypeId))
+        if (filter.SubtypeId != null && !filter.SubtypeId.Equals(this.SubtypeId, StringComparison.OrdinalIgnoreCase))
         {
           return false;
         }
@@ -88,6 +89,8 @@ namespace IngameScript
 
       private string GetTypeName(string typeId)
       {
+        if (typeId == null)
+          return null;
         string typeKey = typeId.StartsWith(_prefix) ? typeId.Substring(_prefix.Length) : typeId;
         if (typeNames.ContainsKey(typeKey)) {
           return typeNames[typeKey];

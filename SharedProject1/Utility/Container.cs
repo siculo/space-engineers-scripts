@@ -9,21 +9,21 @@ namespace IngameScript
   {
     abstract class Container
     {
-      private List<string> _tags;
+      private IEnumerable<string> _tags;
       public Container(string tags = null)
       {
-        _tags = Tags.SplitToTags(tags);
+        _tags = Parsers.ParseTags(tags);
       }
       public abstract IEnumerable<Resource> GetResources();
 
       public bool HasAtLeastOneTag(string tags = null)
       {
-        return this.HasAtLeastOneTag(Tags.SplitToTags(tags));
+        return this.HasAtLeastOneTag(Parsers.ParseTags(tags));
       }
 
       public bool HasAtLeastOneTag(IEnumerable<string> tags)
       {
-        return (tags.Count() > 0) ? tags.Aggregate(false, (current, tag) => current || _tags.Contains(tag)) : true;
+        return (tags != null && tags.Count() > 0) ? tags.Aggregate(false, (current, tag) => current || _tags.Contains(tag)) : true;
       }
     }
 

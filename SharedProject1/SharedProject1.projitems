@@ -18,7 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Game\MyContainer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Resource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Summary.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Tags.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Parsers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\TextOuput.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\Airlock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ControlPanel\ControlPanel.cs" />
