@@ -21,7 +21,7 @@
     - [x] By typeId
     - [x] By SubtypeId
     - [x] Filters syntax parsing
-    - [ ] Abbreviated resource ids in filters parsing
+    - [x] Support short resource names in filters parsing
     - [ ] Filters read from config
   - [ ] Read display tags during initialization
     - [ ] Use TextOutput in main script

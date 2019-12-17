@@ -107,16 +107,16 @@ namespace IngameScript
       {
         Container[] containers = new Container[]
         {
-          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Ice"), 40), 
-            new Resource(new ResourceType("Ore", "Iron"), 77), new Resource(new ResourceType("Ingot", "Gold"), 5) }),
-          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ore", "Iron"), 25) }),
-          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Gold"), 35) })
+          new TestContainer(new Resource[] { new Resource(new ResourceType("MyObjectBuilder_Ore", "Ice"), 40), 
+            new Resource(new ResourceType("MyObjectBuilder_Ore", "Iron"), 77), new Resource(new ResourceType("MyObjectBuilder_Ingot", "Gold"), 5) }),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15), new Resource(new ResourceType("MyObjectBuilder_Ore", "Iron"), 25) }),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("MyObjectBuilder_Ingot", "Gold"), 35) })
         };
         Summary summary = Summary.ContainersSummary(containers, null, Parsers.ParseResourceFilter("ingot"));
         Assert.AreEqual(new Summary(new Resource[]
           {
-            new Resource(new ResourceType("Ingot", "Iron"), 15),
-            new Resource(new ResourceType("Ingot", "Gold"), 40)
+            new Resource(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15),
+            new Resource(new ResourceType("MyObjectBuilder_Ingot", "Gold"), 40)
           }
           ), summary);
       }
@@ -126,18 +126,18 @@ namespace IngameScript
       {
         Container[] containers = new Container[]
         {
-          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Ice"), 40), 
-            new Resource(new ResourceType("Ore", "Iron"), 77), new Resource(new ResourceType("Ingot", "Gold"), 5) }),
-          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ore", "Iron"), 25) }),
-          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Gold"), 35) })
+          new TestContainer(new Resource[] { new Resource(new ResourceType("MyObjectBuilder_Ore", "Ice"), 40), 
+            new Resource(new ResourceType("MyObjectBuilder_Ore", "Iron"), 77), new Resource(new ResourceType("MyObjectBuilder_Ingot", "Gold"), 5) }),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15), new Resource(new ResourceType("MyObjectBuilder_Ore", "Iron"), 25) }),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("MyObjectBuilder_Ore", "Gold"), 35) })
         };
         Summary summary = Summary.ContainersSummary(containers, null, Parsers.ParseResourceFilter(":Iron,ore: gold, ingot :gold"));
         Assert.AreEqual(new Summary(new Resource[]
           {
-            new Resource(new ResourceType("Ore", "Iron"), 77 + 25),
-            new Resource(new ResourceType("Ingot", "Iron"), 15),
-            new Resource(new ResourceType("Ore", "Gold"), 35),
-            new Resource(new ResourceType("Ingot", "Gold"), 5)
+            new Resource(new ResourceType("MyObjectBuilder_Ore", "Iron"), 77 + 25),
+            new Resource(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15),
+            new Resource(new ResourceType("MyObjectBuilder_Ore", "Gold"), 35),
+            new Resource(new ResourceType("MyObjectBuilder_Ingot", "Gold"), 5)
           }
           ), summary);
       }

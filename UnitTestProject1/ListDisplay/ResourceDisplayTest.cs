@@ -10,11 +10,11 @@ namespace IngameScript
   {
     private static readonly string NL = Environment.NewLine;
 
-    private ResourceType Ice = new ResourceType("Ore", "Ice");
-    private ResourceType Gold = new ResourceType("Ore", "Gold");
-    private ResourceType Silver = new ResourceType("Ore", "Silver");
-    private ResourceType Magnesium = new ResourceType("Ore", "Magnesium");
-    private ResourceType MagnesiumIngot = new ResourceType("Ingot", "Magnesium");
+    private ResourceType Ice = new ResourceType("MyObjectBuilder_Ore", "Ice");
+    private ResourceType Gold = new ResourceType("MyObjectBuilder_Ore", "Gold");
+    private ResourceType Silver = new ResourceType("MyObjectBuilder_Ore", "Silver");
+    private ResourceType Magnesium = new ResourceType("MyObjectBuilder_Ore", "Magnesium");
+    private ResourceType MagnesiumIngot = new ResourceType("MyObjectBuilder_Ingot", "Magnesium");
 
     [TestMethod]
     public void ResourceTypeProperty()

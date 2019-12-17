@@ -18,7 +18,7 @@ namespace IngameScript
 
       public bool HasAtLeastOneTag(string tags = null)
       {
-        return this.HasAtLeastOneTag(Parsers.ParseTags(tags));
+        return HasAtLeastOneTag(Parsers.ParseTags(tags));
       }
 
       public bool HasAtLeastOneTag(IEnumerable<string> tags)

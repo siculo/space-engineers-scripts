@@ -9,6 +9,7 @@ namespace IngameScript
   {
     public static class Parsers
     {
+
       public static IEnumerable<string> ParseTags(string tags)
       {
         return ParseRow<string>(tags, item => ParseTag(item));
@@ -21,15 +22,11 @@ namespace IngameScript
 
       private static IEnumerable<T> ParseRow<T>(string row, Func<string, T> itemParser)
       {
-        if (IsEmpty(row))
+        if (string.IsNullOrWhiteSpace(row))
         {
           return null;
         }
         return row.Split(',').Select(item => itemParser(item)).Where(f => f != null);
-      }
-      private static bool IsEmpty(string p)
-      {
-        return p == null || p.Trim().Length == 0;
       }
 
       private static string ParseTag(string tag)
@@ -44,19 +41,19 @@ namespace IngameScript
         if (p.Length > 0)
         {
           return new ResourceType(
-            ParseValueAtPosition(p, 0),
-            ParseValueAtPosition(p, 1)
+            ParseValueAtPosition(p, 0, n => ResourceNames.NameToTypeId(n)),
+            ParseValueAtPosition(p, 1, n => n)
             );
         }
         return null;
       }
 
-      private static string ParseValueAtPosition(string[] p, int position)
+      private static string ParseValueAtPosition(string[] p, int position, Func<string, string> transformation)
       {
         if (position < p.Length)
         {
           string value = p[position].Trim();
-          return value.Length > 0 ? value : null;
+          return value.Length > 0 ? transformation(value) : null;
         }
         return null;
       }
