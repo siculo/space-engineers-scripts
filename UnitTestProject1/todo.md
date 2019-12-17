@@ -18,10 +18,9 @@
     - [x] Filter by more tags
     - [x] Tags from config
   - [ ] Filter resources (Summary.ContainersSummary)
-    - [ ] By typeId
-    - [ ] More than one typeId
-    - [ ] Filter "not"
-    - [ ] By subtypeId
+    - [x] By typeId
+    - [x] By SubtypeId
+    - [ ] Filters read from config
   - [ ] Read display tags during initialization
     - [ ] Use TextOutput in main script
     - [ ] Add Tags property to TextOutput

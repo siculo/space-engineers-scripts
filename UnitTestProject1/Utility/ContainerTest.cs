@@ -125,6 +125,44 @@ namespace IngameScript
       }
 
       [TestMethod]
+      public void TestSummaryFilterByResourceType()
+      {
+        Container[] containers = new Container[]
+        {
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Ice"), 40), new Resource(new ResourceType("Ore", "Iron"), 77), new Resource(new ResourceType("Ingot", "Gold"), 5) }),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ore", "Iron"), 25) }),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Gold"), 35) })
+        };
+        Summary summary = Summary.ContainersSummary(containers, null, new ResourceType[] { new ResourceType("Ingot", null) });
+        Assert.AreEqual(new Summary(new Resource[]
+          {
+            new Resource(new ResourceType("Ingot", "Iron"), 15),
+            new Resource(new ResourceType("Ingot", "Gold"), 40)
+          }
+          ), summary);
+      }
+
+      [TestMethod]
+      public void TestSummaryFilterByResourceSubtype()
+      {
+        Container[] containers = new Container[]
+        {
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Ice"), 40), new Resource(new ResourceType("Ore", "Iron"), 77), new Resource(new ResourceType("Ingot", "Gold"), 5) }),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ingot", "Iron"), 15), new Resource(new ResourceType("Ore", "Iron"), 25) }),
+          new TestContainer(new Resource[] { new Resource(new ResourceType("Ore", "Gold"), 35) })
+        };
+        Summary summary = Summary.ContainersSummary(containers, null, new ResourceType[] { new ResourceType(null, "Iron"), new ResourceType(null, "Gold") });
+        Assert.AreEqual(new Summary(new Resource[]
+          {
+            new Resource(new ResourceType("Ore", "Iron"), 77 + 25),
+            new Resource(new ResourceType("Ingot", "Iron"), 15),
+            new Resource(new ResourceType("Ore", "Gold"), 35),
+            new Resource(new ResourceType("Ingot", "Gold"), 5)
+          }
+          ), summary);
+      }
+
+      [TestMethod]
       public void TestSummaryMaximum()
       {
         Summary summary = new Summary(new Resource[] {

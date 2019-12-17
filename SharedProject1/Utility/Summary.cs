@@ -11,11 +11,16 @@ namespace IngameScript
     {
       private readonly Dictionary<ResourceType, Resource> _resources;
 
-      public static Summary ContainersSummary(IEnumerable<Container> containers, string tags = null)
+      public static Summary ContainersSummary(IEnumerable<Container> containers, string tags = null, IEnumerable<ResourceType> filter = null)
       {
         List<string> tagsList = Tags.SplitToTags(tags);
         IEnumerable<Container> filtered = containers.Where(c => c.HasAtLeastOneTag(tagsList));
-        return filtered.Aggregate(new Summary(), (summary, c) => summary + c.GetResources());
+        return filtered.Aggregate(new Summary(), (summary, c) => summary + ApplyFilter(c.GetResources(), filter));
+      }
+
+      private static IEnumerable<Resource> ApplyFilter(IEnumerable<Resource> resources, IEnumerable<ResourceType> filter)
+      {
+        return resources.Where(r => r.Match(filter));
       }
 
       public Summary(IEnumerable<Resource> resources = null)

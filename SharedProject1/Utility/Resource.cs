@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using VRage;
+using System.Linq;
 
 namespace IngameScript
 {
@@ -26,6 +27,19 @@ namespace IngameScript
       {
         TypeId = typeId;
         SubtypeId = subtypeId;
+      }
+
+      public bool Match(ResourceType filter)
+      {
+        if (filter.TypeId != null && !filter.TypeId.Equals(this.TypeId))
+        {
+          return false;
+        }
+        if (filter.SubtypeId != null && !filter.SubtypeId.Equals(this.SubtypeId))
+        {
+          return false;
+        }
+        return true;
       }
 
       public override string ToString()
@@ -99,6 +113,15 @@ namespace IngameScript
       {
         Type = type;
         Amount = amout;
+      }
+
+      public bool Match(IEnumerable<ResourceType> filter)
+      {
+        if (filter != null)
+        {
+          return (filter.Count() > 0) ? filter.Aggregate(false, (current, f) => current || this.Type.Match(f)) : true;
+        }
+        return true;
       }
 
       public override string ToString()
