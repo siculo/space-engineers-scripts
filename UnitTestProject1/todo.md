@@ -24,6 +24,8 @@
     - [x] Support short resource names in filters parsing
     - [x] Filters read from config
   - [ ] spinning bar bug
+  - [ ] display name in resource display config
+  - [ ] display format in resource display config
   - [ ] list scrolls when it's longer than display height
   - [ ] Read display tags during initialization
     - [ ] Use TextOutput in main script
