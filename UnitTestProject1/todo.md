@@ -22,7 +22,9 @@
     - [x] By SubtypeId
     - [x] Filters syntax parsing
     - [x] Support short resource names in filters parsing
-    - [ ] Filters read from config
+    - [x] Filters read from config
+  - [ ] spinning bar bug
+  - [ ] list scrolls when it's longer than display height
   - [ ] Read display tags during initialization
     - [ ] Use TextOutput in main script
     - [ ] Add Tags property to TextOutput

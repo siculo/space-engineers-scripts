@@ -82,7 +82,8 @@ namespace IngameScript
         if (displayIni.TryParse(d.CustomData, out result))
         {
           String tags = displayIni.Get(resources, "tags").ToString();
-          Summary summary = Summary.ContainersSummary(containers, Parsers.ParseTags(tags));
+          String allow = displayIni.Get(resources, "allow").ToString();
+          Summary summary = Summary.ContainersSummary(containers, Parsers.ParseTags(tags), Parsers.ParseResourceFilter(allow));
           ctx.MaxAmount = (MyFixedPoint)summary.GetMaximum();
           string report = display.Show(summary.GetResources().Select(resource => new ResourceItem(resource)));
           d.WriteText(report);

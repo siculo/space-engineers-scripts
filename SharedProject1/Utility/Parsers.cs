@@ -24,7 +24,7 @@ namespace IngameScript
       {
         if (string.IsNullOrWhiteSpace(row))
         {
-          return null;
+          return Enumerable.Empty<T>();
         }
         return row.Split(',').Select(item => itemParser(item)).Where(f => f != null);
       }
