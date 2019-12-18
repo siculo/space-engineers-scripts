@@ -17,7 +17,7 @@
     - [x] Filter by one tag
     - [x] Filter by more tags
     - [x] Tags from config
-  - [ ] Filter resources (Summary.ContainersSummary)
+  - [x] Filter resources (Summary.ContainersSummary)
     - [x] By typeId
     - [x] By SubtypeId
     - [x] Filters syntax parsing
@@ -40,9 +40,9 @@
   - [ ] UntitledTestProject1 -> TestProject
   - [ ] SharedProject1 -> SharedProject
   - [ ] Use prefix for ingame-script project names
+- [x] ListDisplay, ResourceDisplay and EnergyDisplay are not really "display" and another name prefix whould be better
 - [ ] Should be TextPanelOutput linked to a IMyTextSurface instead of a IMyTextPanel?
 - [ ] DisplayContext with constructor for properties initial values (properties should be R/O?)
-- [x] ListDisplay, ResourceDisplay and EnergyDisplay are not really "display" and another name prefix whould be better
 - [ ] Generic display context that does not belongs to ListDisplay (se è il caso fare ListDisplayContext : DisplayContext)
 - [ ] Move label property from ListDisplay to DisplayContext (?)
 - [ ] My is not a good prefix for game facade classes
