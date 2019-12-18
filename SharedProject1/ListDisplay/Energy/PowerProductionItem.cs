@@ -4,12 +4,12 @@ namespace IngameScript
 {
   partial class Program
   {
-    public abstract class PowerProductionItem : EnergyItem
+    public abstract class PowerProductionItem : EnergyItemRenderer
     {
       public abstract float MaxOutput { get; }
       public abstract float CurrentOutput { get; }
 
-      public override string Render(EnergyDisplayContext ctx)
+      public override string Render(EnergyRendererContext ctx)
       {
         return string.Format(
           ctx.EnUS, "{0}" + Environment.NewLine + " {3} {1}MW OUT {2}MW",

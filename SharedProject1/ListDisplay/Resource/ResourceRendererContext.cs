@@ -7,7 +7,7 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class ResourceDisplayContext : DisplayContext
+    public class ResourceRendererContext : RendererContext
     {
       public MyFixedPoint MaxAmount { get; set; }
       public int ResourceNameSpace { get; set; }
@@ -15,7 +15,7 @@ namespace IngameScript
       public int AmountDecimalDigits { get; set; }
       public int ResourceTypeSpace { get; set; }
 
-      public ResourceDisplayContext()
+      public ResourceRendererContext()
       {
         MaxAmount = 0;
         ResourceNameSpace = 10;

@@ -6,7 +6,7 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class EnergyDisplayContext : DisplayContext
+    public class EnergyRendererContext : RendererContext
     { 
       public int BarWidth { get; set; }
     }

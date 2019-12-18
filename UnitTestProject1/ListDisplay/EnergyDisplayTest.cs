@@ -11,11 +11,11 @@ namespace IngameScript
 
     [TestMethod]
     public void NothingToDisplay() {
-      EnergyDisplayContext ctx = new EnergyDisplayContext();
+      EnergyRendererContext ctx = new EnergyRendererContext();
       ctx.BarWidth = 18;
       ctx.RowWidth = 34;
-      EnergyDisplay display = new EnergyDisplay(ctx);
-      string result = display.Show();
+      EnergyListRenderer display = new EnergyListRenderer(ctx);
+      string result = display.Render();
       string expected =
         "[Energy -]" + NL +
         "----------------------------------";
@@ -25,11 +25,11 @@ namespace IngameScript
     [TestMethod]
     public void SomeBlocks()
     {
-      EnergyDisplayContext ctx = new EnergyDisplayContext();
+      EnergyRendererContext ctx = new EnergyRendererContext();
       ctx.BarWidth = 10;
       ctx.RowWidth = 66;
-      EnergyDisplay display = new EnergyDisplay(ctx);
-      string result = display.Show(
+      EnergyListRenderer display = new EnergyListRenderer(ctx);
+      string result = display.Render(
         new TestBatteryBlock("batteria_1", 3.0f, 2.3f, -317.29f, true, false),
         new TestBatteryBlock("batteria_2", 6.2f, 0f, 0f, false, true),
         new TestPowerProductionBlock("reattore_1", 15.0f, 1.45f, true),
@@ -53,7 +53,7 @@ namespace IngameScript
     }
   }
 
-  class TestBatteryBlock: BatteryItem
+  class TestBatteryBlock: BatteryItemRenderer
   {
     private readonly string _name;
     private readonly float _storage, _stored, _balance;

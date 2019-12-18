@@ -7,28 +7,28 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class ListDisplay<C> where C : DisplayContext
+    public class ListRenderer<C> where C : RendererContext
     {
       private C _ctx;
       private string _label;
 
-      public ListDisplay(C ctx, string label)
+      public ListRenderer(C ctx, string label)
       {
         _ctx = ctx;
         _label = label;
       }
 
-      public string Show(params ListDisplayItem<C>[] rowDisplays)
+      public string Render(params ListItemRenderer<C>[] rowDisplays)
       {
-        return this.Show(rowDisplays.ToList());
+        return this.Render(rowDisplays.ToList());
       }
 
-      public string Show(IEnumerable<ListDisplayItem<C>> rowDisplays)
+      public string Render(IEnumerable<ListItemRenderer<C>> rowDisplays)
       {
         System.Text.StringBuilder result = new System.Text.StringBuilder();
         result.AppendLine(string.Format("[{0} {1}]", _label, _ctx.Bar));
         result.Append(_ctx.HR);
-        foreach (ListDisplayItem<C> rd in rowDisplays)
+        foreach (ListItemRenderer<C> rd in rowDisplays)
         {
           if (rd != null)
           {

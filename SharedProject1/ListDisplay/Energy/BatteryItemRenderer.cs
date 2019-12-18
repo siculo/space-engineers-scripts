@@ -4,14 +4,14 @@ namespace IngameScript
 {
   partial class Program
   {
-    public abstract class BatteryItem : EnergyItem
+    public abstract class BatteryItemRenderer : EnergyItemRenderer
     {
       public abstract float Storage { get; }
       public abstract float Stored { get; }
       public abstract float Balance { get; }
       public abstract bool Charging { get; }
 
-      public override string Render(EnergyDisplayContext ctx)
+      public override string Render(EnergyRendererContext ctx)
       {
         return String.Format(
           ctx.EnUS, "{0}" + Environment.NewLine + " {4} {1}MWh {2} {3}W {5}MWh",

@@ -4,21 +4,21 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class MyPowerProductionItem : PowerProductionItem
+    public class MyPowerProductionItemRenderer : PowerProductionItem
     {
       private readonly IMyPowerProducer _block;
 
-      public static MyPowerProductionItem Find(IMyGridTerminalSystem gts, string name)
+      public static MyPowerProductionItemRenderer Find(IMyGridTerminalSystem gts, string name)
       {
         IMyPowerProducer powerProducer = gts.GetBlockWithName(name) as IMyPowerProducer;
         if (powerProducer == null)
         {
           return null;
         }
-        return new MyPowerProductionItem(powerProducer);
+        return new MyPowerProductionItemRenderer(powerProducer);
       }
 
-      public MyPowerProductionItem(IMyPowerProducer block)
+      public MyPowerProductionItemRenderer(IMyPowerProducer block)
       {
         _block = block;
       }

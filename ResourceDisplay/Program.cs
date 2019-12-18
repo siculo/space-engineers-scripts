@@ -21,9 +21,9 @@ namespace IngameScript
 {
   partial class Program : MyGridProgram
   {
-    ResourceDisplayContext ctx;
+    ResourceRendererContext ctx;
     MyIni _ini;
-    ResourceDisplay display;
+    ResourceListRenderer display;
     List<IMyTextPanel> displays;
     List<IMyTerminalBlock> blocks;
     IEnumerable<Container> containers;
@@ -31,13 +31,13 @@ namespace IngameScript
 
     public Program()
     {
-      ctx = new ResourceDisplayContext();
+      ctx = new ResourceRendererContext();
       ctx.RowWidth = 32;
       ctx.ResourceNameSpace = 8;
       ctx.ResourceTypeSpace = 5;
       ctx.AmountSpace = 7;
       ctx.AmountDecimalDigits = 0;
-      display = new ResourceDisplay(ctx);
+      display = new ResourceListRenderer(ctx);
       Runtime.UpdateFrequency = UpdateFrequency.Update100;
       Initialize();
     }
@@ -85,7 +85,7 @@ namespace IngameScript
           String allow = displayIni.Get(resources, "allow").ToString();
           Summary summary = Summary.ContainersSummary(containers, Parsers.ParseTags(tags), Parsers.ParseResourceFilter(allow));
           ctx.MaxAmount = (MyFixedPoint)summary.GetMaximum();
-          string report = display.Show(summary.GetResources().Select(resource => new ResourceItem(resource)));
+          string report = display.Render(summary.GetResources().Select(resource => new ResourceItemRenderer(resource)));
           d.WriteText(report);
         }
         else

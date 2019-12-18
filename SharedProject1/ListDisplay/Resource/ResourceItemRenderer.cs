@@ -6,16 +6,16 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class ResourceItem : ListDisplayItem<ResourceDisplayContext>
+    public class ResourceItemRenderer : ListItemRenderer<ResourceRendererContext>
     {
       private Resource _resource;
 
-      public ResourceItem(Resource resource)
+      public ResourceItemRenderer(Resource resource)
       {
         _resource = resource;
       }
 
-      public override string Render(ResourceDisplayContext ctx)
+      public override string Render(ResourceRendererContext ctx)
       {
         int barWidth = ctx.RowWidth - ctx.ResourceNameSpace - ctx.AmountSpace - 4;
         if (ctx.ResourceTypeSpace > 0)
@@ -32,7 +32,7 @@ namespace IngameScript
         );
       }
 
-      private string RenderResourceType(ResourceDisplayContext ctx)
+      private string RenderResourceType(ResourceRendererContext ctx)
       {
         if (ctx.ResourceTypeSpace > 0)
         {

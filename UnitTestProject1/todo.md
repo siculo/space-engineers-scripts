@@ -42,7 +42,7 @@
   - [ ] Use prefix for ingame-script project names
 - [ ] Should be TextPanelOutput linked to a IMyTextSurface instead of a IMyTextPanel?
 - [ ] DisplayContext with constructor for properties initial values (properties should be R/O?)
-- [ ] ListDisplay, ResourceDisplay and EnergyDisplay are not really "display" and another name prefix whould be better
+- [x] ListDisplay, ResourceDisplay and EnergyDisplay are not really "display" and another name prefix whould be better
 - [ ] Generic display context that does not belongs to ListDisplay (se è il caso fare ListDisplayContext : DisplayContext)
 - [ ] Move label property from ListDisplay to DisplayContext (?)
 - [ ] My is not a good prefix for game facade classes

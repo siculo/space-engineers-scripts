@@ -6,21 +6,21 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class MyBatteryItem : BatteryItem
+    public class MyBatteryItemRenderer : BatteryItemRenderer
     {
       private readonly IMyBatteryBlock _block;
 
-      public static MyBatteryItem Find(IMyGridTerminalSystem gts, string name)
+      public static MyBatteryItemRenderer Find(IMyGridTerminalSystem gts, string name)
       {
         IMyBatteryBlock batteryBlock = gts.GetBlockWithName(name) as IMyBatteryBlock;
         if (batteryBlock == null)
         {
           return null;
         }
-        return new MyBatteryItem(batteryBlock);
+        return new MyBatteryItemRenderer(batteryBlock);
       }
 
-      public MyBatteryItem(IMyBatteryBlock block)
+      public MyBatteryItemRenderer(IMyBatteryBlock block)
       {
         _block = block;
       }

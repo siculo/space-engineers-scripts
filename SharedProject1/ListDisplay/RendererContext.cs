@@ -4,7 +4,7 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class DisplayContext
+    public class RendererContext
     {
       private string _hr;
 
@@ -20,7 +20,7 @@ namespace IngameScript
 
       public int RowWidth { get { return _rowWidth; } set { _rowWidth = value; _hr = new string('-', _rowWidth); } }
 
-      public DisplayContext()
+      public RendererContext()
       {
         _rowWidth = 30;
       }
