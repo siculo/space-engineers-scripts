@@ -7,17 +7,17 @@ namespace IngameScript
     class BlockSwitcher : MenuItem
     {
       private readonly IMyFunctionalBlock _block;
-      private readonly SpinningBar _bar;
+      private readonly bool _showSpinBar;
 
-      public BlockSwitcher(IMyFunctionalBlock block, SpinningBar bar = null) : base(block.CustomName)
+      public BlockSwitcher(IMyFunctionalBlock block, bool showSpinBar = false) : base(block.CustomName)
       {
         _block = block;
-        _bar = bar;
+        _showSpinBar = showSpinBar;
       }
 
       override public string GetLabel()
       {
-        string check = (_bar != null ? _bar.ToString() : "X");
+        string check = (_showSpinBar ? SpinningBar.Render() : "X");
         return " " + this.name + " " + (_block.Enabled ? "[" + check + "]" : "[ ]");
       }
 

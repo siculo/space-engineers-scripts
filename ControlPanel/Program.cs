@@ -8,7 +8,6 @@ namespace IngameScript
     ControlPanel panel;
     IMyTextSurface display;
     MyIni _ini = new MyIni();
-    SpinningBar _bar = new SpinningBar();
 
     public Program()
     {
@@ -99,7 +98,7 @@ namespace IngameScript
         MyIniParseResult br;
         if (menuIni.TryParse(b.CustomData, out br) && menuIni.Get("switchable", "spinning").ToBoolean())
         {
-          menu.AddItem(new BlockSwitcher(b, _bar));
+          menu.AddItem(new BlockSwitcher(b, true));
         }
         else
         {
@@ -129,7 +128,7 @@ namespace IngameScript
       }
       else
       {
-        _bar.Step();
+        SpinningBar.Step();
       }
       display.WriteText(panel.ToString());
     }

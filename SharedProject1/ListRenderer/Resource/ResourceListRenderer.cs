@@ -4,7 +4,7 @@
   {
     public class ResourceListRenderer : ListRenderer<ResourceRendererContext>
     {
-      public ResourceListRenderer(ResourceRendererContext ctx): base(ctx, "Resources")
+      public ResourceListRenderer(ResourceRendererContext ctx): base(ctx)
       {
       }
     }

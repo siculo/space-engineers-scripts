@@ -8,10 +8,9 @@ namespace IngameScript
     {
       private string _hr;
 
-      public SpinningBar Bar { get; } = new SpinningBar();
-
       public System.Globalization.CultureInfo EnUS { get; } = new System.Globalization.CultureInfo("en-US");
 
+      public string Name { get; set; }
       public string HR {
         get { return _hr; }
       }
@@ -23,6 +22,7 @@ namespace IngameScript
       public RendererContext()
       {
         _rowWidth = 30;
+        Name = "List";
       }
 
       public string RenderLevelBar(double max, double current, int barWidth, bool showPercent = false)

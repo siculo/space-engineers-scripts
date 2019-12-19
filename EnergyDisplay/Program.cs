@@ -67,6 +67,7 @@ namespace IngameScript
           }
         }
       }
+      SpinningBar.Step();
     }
   }
 }

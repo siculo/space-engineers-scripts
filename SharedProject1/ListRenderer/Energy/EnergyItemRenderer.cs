@@ -11,7 +11,8 @@ namespace IngameScript
 
       protected string RenderHeader(EnergyRendererContext ctx)
       {
-        return Name + " " + (Enabled ? "[" + ctx.Bar + "]" : "OFF");
+        string header = Name + " " + (Enabled ? "[" + SpinningBar.Render() + "]" : "OFF");
+        return header;
       }
     }
   }

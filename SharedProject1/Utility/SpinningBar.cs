@@ -2,22 +2,20 @@
 {
   partial class Program
   {
-    public class SpinningBar
+    public static class SpinningBar
     {
-      private int step = 0;
-      private readonly string[] steps = new string[] { "-", "\\", "|", "/" };
+      private static int _step = 0;
+      private static readonly string[] _steps = new string[] { "-", "\\", "|", "/" };
 
-      public override string ToString()
+      public static string Render()
       {
-        return steps[step];
+        return _steps[_step];
       }
 
-      public SpinningBar Step()
+      public static void Step()
       {
-        step = (step + 1) % steps.Length;
-        return this;
+        _step = (_step + 1) % _steps.Length;
       }
     }
-
   }
 }

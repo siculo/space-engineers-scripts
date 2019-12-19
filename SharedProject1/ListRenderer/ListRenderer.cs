@@ -10,12 +10,10 @@ namespace IngameScript
     public class ListRenderer<C> where C : RendererContext
     {
       private C _ctx;
-      private string _label;
 
-      public ListRenderer(C ctx, string label)
+      public ListRenderer(C ctx)
       {
         _ctx = ctx;
-        _label = label;
       }
 
       public string Render(params ListItemRenderer<C>[] rowDisplays)
@@ -25,8 +23,8 @@ namespace IngameScript
 
       public string Render(IEnumerable<ListItemRenderer<C>> rowDisplays)
       {
-        System.Text.StringBuilder result = new System.Text.StringBuilder();
-        result.AppendLine(string.Format("[{0} {1}]", _label, _ctx.Bar));
+        StringBuilder result = new StringBuilder();
+        result.AppendLine(string.Format("[{0} {1}]", _ctx.Name, SpinningBar.Render()));
         result.Append(_ctx.HR);
         foreach (ListItemRenderer<C> rd in rowDisplays)
         {
@@ -35,7 +33,6 @@ namespace IngameScript
             result.Append(Environment.NewLine + rd.Render(_ctx));
           }
         }
-        _ctx.Bar.Step();
         return result.ToString();
       }
     }

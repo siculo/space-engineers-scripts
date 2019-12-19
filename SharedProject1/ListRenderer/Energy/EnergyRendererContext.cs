@@ -9,6 +9,11 @@ namespace IngameScript
     public class EnergyRendererContext : RendererContext
     { 
       public int BarWidth { get; set; }
+
+      public EnergyRendererContext()
+      {
+        Name = "Energy";
+      }
     }
   }
 }

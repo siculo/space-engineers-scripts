@@ -17,6 +17,7 @@ namespace IngameScript
 
       public ResourceRendererContext()
       {
+        Name = "Resources";
         MaxAmount = 0;
         ResourceNameSpace = 10;
         AmountSpace = 10;

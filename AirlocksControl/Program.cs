@@ -8,7 +8,6 @@ namespace IngameScript
   {
     System.Collections.Generic.Dictionary<string, Airlock> airlocks =
         new System.Collections.Generic.Dictionary<string, Airlock>();
-    SpinningBar spinningBar = new SpinningBar();
     MyIni _ini = new MyIni();
     string gridPrefix = "";
 
@@ -76,6 +75,7 @@ namespace IngameScript
         }
       }
       updateAirlockDisplay();
+      SpinningBar.Step();
     }
 
     private Airlock findAirlock(string name)
@@ -104,7 +104,7 @@ namespace IngameScript
       {
         sb.Append("\n\n" + item.Value.description());
       }
-      string displayText = "[Airlock " + spinningBar + "]\n---------------------------------------" + sb.ToString();
+      string displayText = "[Airlock " + SpinningBar.Render() + "]\n---------------------------------------" + sb.ToString();
       System.Collections.Generic.List<IMyTextPanel> displays = new System.Collections.Generic.List<IMyTextPanel>();
       GridTerminalSystem.GetBlocksOfType<IMyTextPanel>(displays, d =>
       {
@@ -129,7 +129,7 @@ namespace IngameScript
       {
         d.WriteText(displayText);
       }
-      spinningBar.Step();
+      SpinningBar.Step();
     }
   }
 }

@@ -7,7 +7,7 @@ namespace IngameScript
 {
   partial class Program
   {
-    abstract class Container
+    public abstract class Container
     {
       private IEnumerable<string> _tags;
       public Container(string tags = null)

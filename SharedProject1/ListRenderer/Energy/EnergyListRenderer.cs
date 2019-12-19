@@ -23,7 +23,7 @@ namespace IngameScript
   {
     public class EnergyListRenderer : ListRenderer<EnergyRendererContext>
     {
-      public EnergyListRenderer(EnergyRendererContext ctx) : base (ctx, "Energy")
+      public EnergyListRenderer(EnergyRendererContext ctx) : base (ctx)
       {
       }
     }
