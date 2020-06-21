@@ -1,6 +1,7 @@
 ﻿using Sandbox.ModAPI.Ingame;
 using System.Collections.Generic;
 using System.Linq;
+using VRage.Game.ModAPI;
 using VRage.Game.ModAPI.Ingame.Utilities;
 
 namespace IngameScript
@@ -11,7 +12,6 @@ namespace IngameScript
 
     public Program()
     {
-      Initialize();
       Runtime.UpdateFrequency = UpdateFrequency.Update100;
     }
 
@@ -24,14 +24,14 @@ namespace IngameScript
     private IEnumerable<Container> InitContainers()
     {
       List<IMyTerminalBlock> containerBlocks = new List<IMyTerminalBlock>();
-      GridTerminalSystem.GetBlocksOfType<IMyTerminalBlock>(containerBlocks, b => b.HasInventory);
+      GridTerminalSystem.GetBlocksOfType<IMyTerminalBlock>(containerBlocks, b => (b.HasInventory && this.Me.CubeGrid == b.CubeGrid));
       return containerBlocks.Select(b => new MyContainer(b) as Container);
     }
 
     private IEnumerable<ResourceDisplay> InitResourceDisplays(IEnumerable<Container> containers)
     {
       List<IMyTextPanel> panels = new List<IMyTextPanel>();
-      GridTerminalSystem.GetBlocksOfType<IMyTextPanel>(panels, panel => MyIni.HasSection(panel.CustomData, ResourceDisplay.resources));
+      GridTerminalSystem.GetBlocksOfType<IMyTextPanel>(panels, panel => MyIni.HasSection(panel.CustomData, ResourceDisplay.resources) && this.Me.CubeGrid == panel.CubeGrid);
       List<ResourceDisplay> resourceDisplays = new List<ResourceDisplay>();
       foreach (IMyTextPanel panel in panels)
       {
@@ -42,6 +42,7 @@ namespace IngameScript
 
     public void Main(string argument, UpdateType updateSource)
     {
+      Initialize();
       foreach (ResourceDisplay display in _resourceDisplays)
       {
         display.ShowSummary();
