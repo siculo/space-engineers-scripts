@@ -23,6 +23,9 @@
     - [x] Filters syntax parsing
     - [x] Support short resource names in filters parsing
     - [x] Filters read from config
+  - [ ] Invetory with generic type T
+  - [ ] Sort Inventory
+  - [ ] Group Inventory by resource type <ore, ingots...>
   - [ ] spinning bar bug
   - [ ] display name in resource display config
   - [ ] display format in resource display config

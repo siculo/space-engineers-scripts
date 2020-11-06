@@ -29,7 +29,7 @@ namespace IngameScript
       }
 
       [TestMethod]
-      public void TestSummaryEquals()
+      public void TestInventoryEquals()
       {
         Assert.AreEqual(
           new ResourceInventory(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice")), new ResourceStack(new ResourceType("Ingot", "Gold"), 22), new ResourceStack(new ResourceType("Ingot", "Iron"), 7) }),
@@ -38,14 +38,14 @@ namespace IngameScript
       }
 
       [TestMethod]
-      public void TestConsolidateSummary()
+      public void TestConsolidateInventory()
       {
         ResourceInventory inventory = new ResourceInventory(new List<ResourceStack>() { new ResourceStack(new ResourceType("", "Ice"), 22), new ResourceStack(new ResourceType("", "Ice"), 14) });
         Assert.IsTrue(Enumerable.SequenceEqual(new List<ResourceStack>() { new ResourceStack(new ResourceType("", "Ice"), 14 + 22) }, inventory.GetResources()));
       }
 
       [TestMethod]
-      public void TestSummaryAddition()
+      public void TestInventoryAddition()
       {
         ResourceInventory inventoryA = new ResourceInventory(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice"), 20) });
         ResourceInventory inventoryB = new ResourceInventory(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice"), 50) });
@@ -54,7 +54,7 @@ namespace IngameScript
       }
 
       [TestMethod]
-      public void TestFullSummary()
+      public void TestFullInventory()
       {
         Container[] containers = new Container[]
         {
@@ -70,7 +70,7 @@ namespace IngameScript
             }
           ) 
         };
-        ResourceInventory inventory = ResourceInventory.ContainersInventory(containers);
+        ResourceInventory inventory = ResourceInventory.Stocktake(containers);
         Assert.AreEqual(
           new ResourceInventory(new ResourceStack[] {
             new ResourceStack(new ResourceType("Ore", "Ice"), 48),
@@ -84,7 +84,7 @@ namespace IngameScript
       }
 
       [TestMethod]
-      public void TestSummaryFilteringByTags()
+      public void TestInventoryFilteringByTags()
       {
         Container[] containers = new Container[]
         {
@@ -92,7 +92,7 @@ namespace IngameScript
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("Ingot", "Iron"), 15), new ResourceStack(new ResourceType("Ore", "Iron"), 25) }, "tag1, tag2,tag3"),
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("Ore", "Gold"), 35) }, "tag2, tag4")
         };
-        ResourceInventory inventory = ResourceInventory.ContainersInventory(containers, Parsers.ParseTags("tag1, tag3"));
+        ResourceInventory inventory = ResourceInventory.Stocktake(containers, Parsers.ParseTags("tag1, tag3"));
         Assert.AreEqual(new ResourceInventory(new ResourceStack[]
           {
             new ResourceStack(new ResourceType("Ore", "Ice"), 40),
@@ -103,7 +103,7 @@ namespace IngameScript
       }
 
       [TestMethod]
-      public void TestSummaryFilteringByResourceType()
+      public void TestInventoryFilteringByResourceType()
       {
         Container[] containers = new Container[]
         {
@@ -112,7 +112,7 @@ namespace IngameScript
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15), new ResourceStack(new ResourceType("MyObjectBuilder_Ore", "Iron"), 25) }),
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Gold"), 35) })
         };
-        ResourceInventory inventory = ResourceInventory.ContainersInventory(containers, null, Parsers.ParseResourceFilter("ingot"));
+        ResourceInventory inventory = ResourceInventory.Stocktake(containers, null, Parsers.ParseResourceFilter("ingot"));
         Assert.AreEqual(new ResourceInventory(new ResourceStack[]
           {
             new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15),
@@ -122,7 +122,7 @@ namespace IngameScript
       }
       
       [TestMethod]
-      public void TestSummaryFilterByResourceSubtype()
+      public void TestInventoryFilterByResourceSubtype()
       {
         Container[] containers = new Container[]
         {
@@ -131,7 +131,7 @@ namespace IngameScript
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15), new ResourceStack(new ResourceType("MyObjectBuilder_Ore", "Iron"), 25) }),
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("MyObjectBuilder_Ore", "Gold"), 35) })
         };
-        ResourceInventory inventory = ResourceInventory.ContainersInventory(containers, null, Parsers.ParseResourceFilter(":Iron,ore: gold, ingot :gold"));
+        ResourceInventory inventory = ResourceInventory.Stocktake(containers, null, Parsers.ParseResourceFilter(":Iron,ore: gold, ingot :gold"));
         Assert.AreEqual(new ResourceInventory(new ResourceStack[]
           {
             new ResourceStack(new ResourceType("MyObjectBuilder_Ore", "Iron"), 77 + 25),
@@ -143,7 +143,7 @@ namespace IngameScript
       }
 
       [TestMethod]
-      public void TestSummaryMaximum()
+      public void TestInventoryMaximum()
       {
         ResourceInventory inventory = new ResourceInventory(new ResourceStack[] {
             new ResourceStack(new ResourceType("Ore", "Ice"), 48),

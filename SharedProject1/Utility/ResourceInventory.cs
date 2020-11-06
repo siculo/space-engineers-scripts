@@ -12,9 +12,9 @@ namespace IngameScript
      */
     class ResourceInventory
     {
-      private readonly Dictionary<ResourceType, ResourceStack> _resources;
+      private readonly IEnumerable<ResourceStack> _resources;
       
-      public static ResourceInventory ContainersInventory(IEnumerable<Container> containers, IEnumerable<string> tags = null, IEnumerable<ResourceType> filter = null)
+      public static ResourceInventory Stocktake(IEnumerable<Container> containers, IEnumerable<string> tags = null, IEnumerable<ResourceType> filter = null)
       {
         IEnumerable<Container> filtered = containers.Where(c => c.HasAtLeastOneTag(tags));
         return filtered.Aggregate(new ResourceInventory(), (summary, c) => summary + ApplyFilter(c.GetResources(), filter));
@@ -29,7 +29,7 @@ namespace IngameScript
       {
         if (resources == null)
         {
-          _resources = new Dictionary<ResourceType, ResourceStack>();
+          _resources = new List<ResourceStack>();
         }
         else
         {
@@ -39,7 +39,7 @@ namespace IngameScript
 
       public IEnumerable<ResourceStack> GetResources()
       {
-        return _resources.Values;
+        return _resources;
       }
 
       public static ResourceInventory operator +(ResourceInventory a, ResourceInventory b)
@@ -106,7 +106,7 @@ namespace IngameScript
         return _resources.GetHashCode();
       }
 
-      private static Dictionary<ResourceType, ResourceStack> AggregateDuplicates(IEnumerable<ResourceStack> resources)
+      private static Dictionary<ResourceType, ResourceStack> AggregateDuplicatesOld(IEnumerable<ResourceStack> resources)
       {
         Dictionary<ResourceType, ResourceStack> aggregated = new Dictionary<ResourceType, ResourceStack>();
         foreach (ResourceStack r in resources)
@@ -121,6 +121,16 @@ namespace IngameScript
           }
         }
         return aggregated;
+      }
+
+      private static IEnumerable<ResourceStack> AggregateDuplicates(IEnumerable<ResourceStack> resources)
+      {
+        IEnumerable<ResourceStack> consolidated = new List<ResourceStack>();
+        foreach (ResourceStack r in resources)
+        {
+          consolidated = r.ConsolidateTo(consolidated);
+        }
+        return consolidated;
       }
     }
   }

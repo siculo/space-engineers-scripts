@@ -22,7 +22,6 @@ namespace IngameScript
       Assert.AreEqual(Ice, new ResourceStack(Ice).Type);
     }
 
-
     [TestMethod]
     public void ResourceAmountProperty()
     {

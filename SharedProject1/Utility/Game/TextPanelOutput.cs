@@ -39,7 +39,7 @@ namespace IngameScript
 
       public void ShowSummary()
       {
-        ResourceInventory inventory = ResourceInventory.ContainersInventory(_containers, Parsers.ParseTags(_tags), Parsers.ParseResourceFilter(_allow));
+        ResourceInventory inventory = ResourceInventory.Stocktake(_containers, Parsers.ParseTags(_tags), Parsers.ParseResourceFilter(_allow));
         _ctx.MaxAmount = (MyFixedPoint)inventory.GetMaximum();
         _panel.WriteText(_renderer.Render(inventory.GetResources().Select(resource => new ResourceItemRenderer(resource))));
       }

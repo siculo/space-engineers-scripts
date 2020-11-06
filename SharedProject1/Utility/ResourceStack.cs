@@ -35,6 +35,29 @@ namespace IngameScript
         return filter.Aggregate(false, (current, f) => current || this.Type.Match(f));
       }
 
+      public IEnumerable<ResourceStack> ConsolidateTo(IEnumerable<ResourceStack> collection)
+      {
+        List<ResourceStack> consolidated = new List<ResourceStack>();
+        Boolean found = false;
+        foreach (ResourceStack r in collection)
+        {
+          if (r.Type.Equals(this.Type))
+          {
+            consolidated.Add(new ResourceStack(r.Type, this.Amount + r.Amount));
+            found = true;
+          }
+          else
+          {
+            consolidated.Add(r);
+          }
+        }
+        if (!found)
+        {
+          consolidated.Add(this);
+        }
+        return consolidated;
+      }
+
       public override string ToString()
       {
         return  string.Format("({0}: {1})", Type, Amount);
