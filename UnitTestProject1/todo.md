@@ -1,23 +1,23 @@
 ﻿### Todo
 
-- [ ] Resources Summary Display
-  - [x] Summary of a container with only one resource
-  - [x] Summary of some containers with only one resource of the same type
-  - [x] Summary of a container with more resources of the same types
-  - [x] Summary of a container with more resources of different types
-  - [x] Summary of some containers with resources of different types
-  - [x] Move static method ContainerSummary inside Summary?
+- [ ] Resources Inventory Display
+  - [x] Inventory of a container with only one resource
+  - [x] Inventory of some containers with only one resource of the same type
+  - [x] Inventory of a container with more resources of the same types
+  - [x] Inventory of a container with more resources of different types
+  - [x] Inventory of some containers with resources of different types
+  - [x] Move static method ContainerInventory inside Inventory?
   - [x] Container returns a sequence of resources instead of a summary
   - [x] Map in-game container to abstract container
   - [x] In-game display of resource summary
   - [x] Display shorten type and subtype names
   - [x] Duplicated resource bug
   - [x] Spinning bar
-  - [x] Filter container by tags (Summary.ContainersSummary)
+  - [x] Filter container by tags (Inventory.ContainersInventory)
     - [x] Filter by one tag
     - [x] Filter by more tags
     - [x] Tags from config
-  - [x] Filter resources (Summary.ContainersSummary)
+  - [x] Filter resources (Inventory.ContainersInventory)
     - [x] By typeId
     - [x] By SubtypeId
     - [x] Filters syntax parsing

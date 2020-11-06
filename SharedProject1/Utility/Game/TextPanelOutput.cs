@@ -39,9 +39,9 @@ namespace IngameScript
 
       public void ShowSummary()
       {
-        Summary summary = Summary.ContainersSummary(_containers, Parsers.ParseTags(_tags), Parsers.ParseResourceFilter(_allow));
-        _ctx.MaxAmount = (MyFixedPoint)summary.GetMaximum();
-        _panel.WriteText(_renderer.Render(summary.GetResources().Select(resource => new ResourceItemRenderer(resource))));
+        ResourceInventory inventory = ResourceInventory.ContainersInventory(_containers, Parsers.ParseTags(_tags), Parsers.ParseResourceFilter(_allow));
+        _ctx.MaxAmount = (MyFixedPoint)inventory.GetMaximum();
+        _panel.WriteText(_renderer.Render(inventory.GetResources().Select(resource => new ResourceItemRenderer(resource))));
       }
     }
   }

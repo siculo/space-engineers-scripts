@@ -20,7 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utility\ResourceStack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\ResourceNames.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\ResourceType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Summary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\ResourceInventory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Parsers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\TextOuput.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Tools\Airlock.cs" />

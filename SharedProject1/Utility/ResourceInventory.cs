@@ -10,14 +10,14 @@ namespace IngameScript
     /**
      * <summary>An inventory of resources</summary>
      */
-    class Summary
+    class ResourceInventory
     {
       private readonly Dictionary<ResourceType, ResourceStack> _resources;
       
-      public static Summary ContainersSummary(IEnumerable<Container> containers, IEnumerable<string> tags = null, IEnumerable<ResourceType> filter = null)
+      public static ResourceInventory ContainersInventory(IEnumerable<Container> containers, IEnumerable<string> tags = null, IEnumerable<ResourceType> filter = null)
       {
         IEnumerable<Container> filtered = containers.Where(c => c.HasAtLeastOneTag(tags));
-        return filtered.Aggregate(new Summary(), (summary, c) => summary + ApplyFilter(c.GetResources(), filter));
+        return filtered.Aggregate(new ResourceInventory(), (summary, c) => summary + ApplyFilter(c.GetResources(), filter));
       }
 
       private static IEnumerable<ResourceStack> ApplyFilter(IEnumerable<ResourceStack> resources, IEnumerable<ResourceType> filter)
@@ -25,7 +25,7 @@ namespace IngameScript
         return resources.Where(r => r.Match(filter));
       }
 
-      public Summary(IEnumerable<ResourceStack> resources = null)
+      public ResourceInventory(IEnumerable<ResourceStack> resources = null)
       {
         if (resources == null)
         {
@@ -42,14 +42,14 @@ namespace IngameScript
         return _resources.Values;
       }
 
-      public static Summary operator +(Summary a, Summary b)
+      public static ResourceInventory operator +(ResourceInventory a, ResourceInventory b)
       {
-        return new Summary(a.GetResources().Concat(b.GetResources()));
+        return new ResourceInventory(a.GetResources().Concat(b.GetResources()));
       }
 
-      public static Summary operator +(Summary a, IEnumerable<ResourceStack> b)
+      public static ResourceInventory operator +(ResourceInventory a, IEnumerable<ResourceStack> b)
       {
-        return a + new Summary(b);
+        return a + new ResourceInventory(b);
       }
 
       internal float GetMaximum()
@@ -76,15 +76,15 @@ namespace IngameScript
             msg = msg + ", " + res.ToString();
           }
         }
-        return "Summary: " + msg;
+        return "ResourceInventory: " + msg;
       }
 
       public override bool Equals(object obj)
       {
-        return this.Equals(obj as Summary);
+        return this.Equals(obj as ResourceInventory);
       }
 
-      public bool Equals(Summary that)
+      public bool Equals(ResourceInventory that)
       {
         if (Object.ReferenceEquals(that, null))
         {

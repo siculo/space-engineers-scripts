@@ -24,33 +24,33 @@ namespace IngameScript
       [TestMethod]
       public void TestCompareContainerResources()
       {
-        Summary summary = new Summary(new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("", "Ice")) }).GetResources());
-        Assert.IsTrue(Enumerable.SequenceEqual(new List<ResourceStack>() { new ResourceStack(new ResourceType("", "Ice")) }, summary.GetResources()));
+        ResourceInventory inventory = new ResourceInventory(new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("", "Ice")) }).GetResources());
+        Assert.IsTrue(Enumerable.SequenceEqual(new List<ResourceStack>() { new ResourceStack(new ResourceType("", "Ice")) }, inventory.GetResources()));
       }
 
       [TestMethod]
       public void TestSummaryEquals()
       {
         Assert.AreEqual(
-          new Summary(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice")), new ResourceStack(new ResourceType("Ingot", "Gold"), 22), new ResourceStack(new ResourceType("Ingot", "Iron"), 7) }),
-          new Summary(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ingot", "Iron"), 7), new ResourceStack(new ResourceType("Ore", "Ice")), new ResourceStack(new ResourceType("Ingot", "Gold"), 22) })
+          new ResourceInventory(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice")), new ResourceStack(new ResourceType("Ingot", "Gold"), 22), new ResourceStack(new ResourceType("Ingot", "Iron"), 7) }),
+          new ResourceInventory(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ingot", "Iron"), 7), new ResourceStack(new ResourceType("Ore", "Ice")), new ResourceStack(new ResourceType("Ingot", "Gold"), 22) })
           );
       }
 
       [TestMethod]
       public void TestConsolidateSummary()
       {
-        Summary summary = new Summary(new List<ResourceStack>() { new ResourceStack(new ResourceType("", "Ice"), 22), new ResourceStack(new ResourceType("", "Ice"), 14) });
-        Assert.IsTrue(Enumerable.SequenceEqual(new List<ResourceStack>() { new ResourceStack(new ResourceType("", "Ice"), 14 + 22) }, summary.GetResources()));
+        ResourceInventory inventory = new ResourceInventory(new List<ResourceStack>() { new ResourceStack(new ResourceType("", "Ice"), 22), new ResourceStack(new ResourceType("", "Ice"), 14) });
+        Assert.IsTrue(Enumerable.SequenceEqual(new List<ResourceStack>() { new ResourceStack(new ResourceType("", "Ice"), 14 + 22) }, inventory.GetResources()));
       }
 
       [TestMethod]
       public void TestSummaryAddition()
       {
-        Summary summaryA = new Summary(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice"), 20) });
-        Summary summaryB = new Summary(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice"), 50) });
-        Summary summaryC = summaryA + summaryB;
-        Assert.IsTrue(Enumerable.SequenceEqual(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice"), 70) }, summaryC.GetResources()));
+        ResourceInventory inventoryA = new ResourceInventory(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice"), 20) });
+        ResourceInventory inventoryB = new ResourceInventory(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice"), 50) });
+        ResourceInventory inventoryC = inventoryA + inventoryB;
+        Assert.IsTrue(Enumerable.SequenceEqual(new List<ResourceStack>() { new ResourceStack(new ResourceType("Ore", "Ice"), 70) }, inventoryC.GetResources()));
       }
 
       [TestMethod]
@@ -70,16 +70,16 @@ namespace IngameScript
             }
           ) 
         };
-        Summary summary = Summary.ContainersSummary(containers);
+        ResourceInventory inventory = ResourceInventory.ContainersInventory(containers);
         Assert.AreEqual(
-          new Summary(new ResourceStack[] {
+          new ResourceInventory(new ResourceStack[] {
             new ResourceStack(new ResourceType("Ore", "Ice"), 48),
             new ResourceStack(new ResourceType("Ingot", "Iron"), 20),
             new ResourceStack(new ResourceType("Ingot", "Gold"), 27),
             new ResourceStack(new ResourceType("Ore", "Silver"), 14),
             new ResourceStack(new ResourceType("Ore", "Iron"), 77)
           }),
-          summary
+          inventory
           );
       }
 
@@ -92,14 +92,14 @@ namespace IngameScript
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("Ingot", "Iron"), 15), new ResourceStack(new ResourceType("Ore", "Iron"), 25) }, "tag1, tag2,tag3"),
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("Ore", "Gold"), 35) }, "tag2, tag4")
         };
-        Summary summary = Summary.ContainersSummary(containers, Parsers.ParseTags("tag1, tag3"));
-        Assert.AreEqual(new Summary(new ResourceStack[]
+        ResourceInventory inventory = ResourceInventory.ContainersInventory(containers, Parsers.ParseTags("tag1, tag3"));
+        Assert.AreEqual(new ResourceInventory(new ResourceStack[]
           {
             new ResourceStack(new ResourceType("Ore", "Ice"), 40),
             new ResourceStack(new ResourceType("Ore", "Iron"), 77 + 25),
             new ResourceStack(new ResourceType("Ingot", "Iron"), 15)
           }
-          ), summary);
+          ), inventory);
       }
 
       [TestMethod]
@@ -112,13 +112,13 @@ namespace IngameScript
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15), new ResourceStack(new ResourceType("MyObjectBuilder_Ore", "Iron"), 25) }),
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Gold"), 35) })
         };
-        Summary summary = Summary.ContainersSummary(containers, null, Parsers.ParseResourceFilter("ingot"));
-        Assert.AreEqual(new Summary(new ResourceStack[]
+        ResourceInventory inventory = ResourceInventory.ContainersInventory(containers, null, Parsers.ParseResourceFilter("ingot"));
+        Assert.AreEqual(new ResourceInventory(new ResourceStack[]
           {
             new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15),
             new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Gold"), 40)
           }
-          ), summary);
+          ), inventory);
       }
       
       [TestMethod]
@@ -131,21 +131,21 @@ namespace IngameScript
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15), new ResourceStack(new ResourceType("MyObjectBuilder_Ore", "Iron"), 25) }),
           new TestContainer(new ResourceStack[] { new ResourceStack(new ResourceType("MyObjectBuilder_Ore", "Gold"), 35) })
         };
-        Summary summary = Summary.ContainersSummary(containers, null, Parsers.ParseResourceFilter(":Iron,ore: gold, ingot :gold"));
-        Assert.AreEqual(new Summary(new ResourceStack[]
+        ResourceInventory inventory = ResourceInventory.ContainersInventory(containers, null, Parsers.ParseResourceFilter(":Iron,ore: gold, ingot :gold"));
+        Assert.AreEqual(new ResourceInventory(new ResourceStack[]
           {
             new ResourceStack(new ResourceType("MyObjectBuilder_Ore", "Iron"), 77 + 25),
             new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Iron"), 15),
             new ResourceStack(new ResourceType("MyObjectBuilder_Ore", "Gold"), 35),
             new ResourceStack(new ResourceType("MyObjectBuilder_Ingot", "Gold"), 5)
           }
-          ), summary);
+          ), inventory);
       }
 
       [TestMethod]
       public void TestSummaryMaximum()
       {
-        Summary summary = new Summary(new ResourceStack[] {
+        ResourceInventory inventory = new ResourceInventory(new ResourceStack[] {
             new ResourceStack(new ResourceType("Ore", "Ice"), 48),
             new ResourceStack(new ResourceType("Ingot", "Iron"), 20),
             new ResourceStack(new ResourceType("Ingot", "Gold"), 27),
@@ -153,7 +153,7 @@ namespace IngameScript
             new ResourceStack(new ResourceType("Ingot", "Iron"), 66),
             new ResourceStack(new ResourceType("Ore", "Iron"), 12)
           });
-        Assert.AreEqual(86, summary.GetMaximum());
+        Assert.AreEqual(86, inventory.GetMaximum());
       }
     }
 
