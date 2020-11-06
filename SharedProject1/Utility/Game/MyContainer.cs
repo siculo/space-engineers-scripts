@@ -40,7 +40,7 @@ namespace IngameScript
         return null;
       }
 
-      override public IEnumerable<Resource> GetResources()
+      override public IEnumerable<ResourceStack> GetResources()
       {
         if (_block.HasInventory)
         {
@@ -48,15 +48,15 @@ namespace IngameScript
           _block.GetInventory().GetItems(items);
           return items.Select(item => ConvertToResource(item)).Where(resource => resource != null);
         }
-        return new List<Resource>();
+        return new List<ResourceStack>();
       }
 
-      private Resource ConvertToResource(MyInventoryItem item)
+      private ResourceStack ConvertToResource(MyInventoryItem item)
       {
         ResourceType resourceType = new ResourceType(item.Type.TypeId, item.Type.SubtypeId);
         //if (resourceType.TypeName != "Ore")
         //  return null;
-        return new Resource(resourceType, item.Amount);
+        return new ResourceStack(resourceType, item.Amount);
       }
     }
   }

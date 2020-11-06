@@ -14,7 +14,7 @@ namespace IngameScript
       {
         _tags = Parsers.ParseTags(tags);
       }
-      public abstract IEnumerable<Resource> GetResources();
+      public abstract IEnumerable<ResourceStack> GetResources();
 
       public bool HasAtLeastOneTag(string tags = null)
       {

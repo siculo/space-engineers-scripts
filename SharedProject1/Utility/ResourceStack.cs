@@ -8,16 +8,19 @@ namespace IngameScript
 {
   partial class Program
   {
-    public class Resource
+    /**
+     * <summary>A stack of resources with a <c>Type</c> and an <c>Amount</c></summary>
+     */
+    public class ResourceStack
     {
       public ResourceType Type { get; private set; }
       public MyFixedPoint Amount {  get; private set; }
 
-      public Resource(ResourceType type): this(type, 0)
+      public ResourceStack(ResourceType type): this(type, 0)
       {
       }
 
-      public Resource(ResourceType type, MyFixedPoint amout)
+      public ResourceStack(ResourceType type, MyFixedPoint amout)
       {
         Type = type;
         Amount = amout;
@@ -39,10 +42,10 @@ namespace IngameScript
 
       public override bool Equals(object obj)
       {
-        return this.Equals(obj as Resource);
+        return this.Equals(obj as ResourceStack);
       }
 
-      public bool Equals(Resource that)
+      public bool Equals(ResourceStack that)
       {
         if (Object.ReferenceEquals(that, null))
         {

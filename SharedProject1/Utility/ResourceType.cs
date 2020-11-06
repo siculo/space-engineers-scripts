@@ -8,6 +8,9 @@ namespace IngameScript
 {
   partial class Program
   {
+    /**
+     * <summary>The type of any ingame resource</summary>
+     */
     public class ResourceType : IComparable
     {
       public string TypeId { get; private set; }

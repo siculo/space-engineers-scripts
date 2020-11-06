@@ -8,9 +8,9 @@ namespace IngameScript
   {
     public class ResourceItemRenderer : ListItemRenderer<ResourceRendererContext>
     {
-      private Resource _resource;
+      private ResourceStack _resource;
 
-      public ResourceItemRenderer(Resource resource)
+      public ResourceItemRenderer(ResourceStack resource)
       {
         _resource = resource;
       }

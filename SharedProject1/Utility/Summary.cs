@@ -7,9 +7,12 @@ namespace IngameScript
 {
   partial class Program
   {
+    /**
+     * <summary>An inventory of resources</summary>
+     */
     class Summary
     {
-      private readonly Dictionary<ResourceType, Resource> _resources;
+      private readonly Dictionary<ResourceType, ResourceStack> _resources;
       
       public static Summary ContainersSummary(IEnumerable<Container> containers, IEnumerable<string> tags = null, IEnumerable<ResourceType> filter = null)
       {
@@ -17,16 +20,16 @@ namespace IngameScript
         return filtered.Aggregate(new Summary(), (summary, c) => summary + ApplyFilter(c.GetResources(), filter));
       }
 
-      private static IEnumerable<Resource> ApplyFilter(IEnumerable<Resource> resources, IEnumerable<ResourceType> filter)
+      private static IEnumerable<ResourceStack> ApplyFilter(IEnumerable<ResourceStack> resources, IEnumerable<ResourceType> filter)
       {
         return resources.Where(r => r.Match(filter));
       }
 
-      public Summary(IEnumerable<Resource> resources = null)
+      public Summary(IEnumerable<ResourceStack> resources = null)
       {
         if (resources == null)
         {
-          _resources = new Dictionary<ResourceType, Resource>();
+          _resources = new Dictionary<ResourceType, ResourceStack>();
         }
         else
         {
@@ -34,7 +37,7 @@ namespace IngameScript
         }
       }
 
-      public IEnumerable<Resource> GetResources()
+      public IEnumerable<ResourceStack> GetResources()
       {
         return _resources.Values;
       }
@@ -44,7 +47,7 @@ namespace IngameScript
         return new Summary(a.GetResources().Concat(b.GetResources()));
       }
 
-      public static Summary operator +(Summary a, IEnumerable<Resource> b)
+      public static Summary operator +(Summary a, IEnumerable<ResourceStack> b)
       {
         return a + new Summary(b);
       }
@@ -52,7 +55,7 @@ namespace IngameScript
       internal float GetMaximum()
       {
         float max = 0;
-        foreach(Resource resource in GetResources())
+        foreach(ResourceStack resource in GetResources())
         {
           max = Math.Max((float)resource.Amount, max);
         }
@@ -62,7 +65,7 @@ namespace IngameScript
       public override string ToString()
       {
         string msg = "";
-        foreach (Resource res in GetResources())
+        foreach (ResourceStack res in GetResources())
         {
           if (msg.Length == 0)
           {
@@ -103,10 +106,10 @@ namespace IngameScript
         return _resources.GetHashCode();
       }
 
-      private static Dictionary<ResourceType, Resource> AggregateDuplicates(IEnumerable<Resource> resources)
+      private static Dictionary<ResourceType, ResourceStack> AggregateDuplicates(IEnumerable<ResourceStack> resources)
       {
-        Dictionary<ResourceType, Resource> aggregated = new Dictionary<ResourceType, Resource>();
-        foreach (Resource r in resources)
+        Dictionary<ResourceType, ResourceStack> aggregated = new Dictionary<ResourceType, ResourceStack>();
+        foreach (ResourceStack r in resources)
         {
           if (!aggregated.ContainsKey(r.Type))
           {
@@ -114,7 +117,7 @@ namespace IngameScript
           }
           else
           {
-            aggregated[r.Type] = new Resource(r.Type, aggregated[r.Type].Amount + r.Amount);
+            aggregated[r.Type] = new ResourceStack(r.Type, aggregated[r.Type].Amount + r.Amount);
           }
         }
         return aggregated;

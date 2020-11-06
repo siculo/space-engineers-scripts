@@ -19,16 +19,16 @@ namespace IngameScript
     [TestMethod]
     public void ResourceTypeProperty()
     {
-      Assert.AreEqual(Ice, new Resource(Ice).Type);
+      Assert.AreEqual(Ice, new ResourceStack(Ice).Type);
     }
 
 
     [TestMethod]
     public void ResourceAmountProperty()
     {
-      Assert.AreEqual(0, new Resource(Ice, 0).Amount);
-      Assert.AreEqual(15, new Resource(Ice, 15).Amount);
-      Assert.AreEqual((MyFixedPoint)22.3, new Resource(Ice, (MyFixedPoint)22.3).Amount);
+      Assert.AreEqual(0, new ResourceStack(Ice, 0).Amount);
+      Assert.AreEqual(15, new ResourceStack(Ice, 15).Amount);
+      Assert.AreEqual((MyFixedPoint)22.3, new ResourceStack(Ice, (MyFixedPoint)22.3).Amount);
     }
 
     [TestMethod]
@@ -40,10 +40,10 @@ namespace IngameScript
       ctx.AmountSpace = 10;
       ctx.MaxAmount = (MyFixedPoint)12000.225;
       ctx.AmountDecimalDigits = 3;
-      Assert.AreEqual("Ice       (||||||||||)  12000.225", new ResourceItemRenderer(new Resource(Ice, (MyFixedPoint)12000.225)).Render(ctx));
-      Assert.AreEqual("Gold      (||||......)   5021.59 ", new ResourceItemRenderer(new Resource(Gold, (MyFixedPoint)5021.59)).Render(ctx));
-      Assert.AreEqual("Ice       (..........)     77.1  ", new ResourceItemRenderer(new Resource(Ice, (MyFixedPoint)77.1)).Render(ctx));
-      Assert.AreEqual("Magnesium (|.........)   1034    ", new ResourceItemRenderer(new Resource(Magnesium, 1034)).Render(ctx));
+      Assert.AreEqual("Ice       (||||||||||)  12000.225", new ResourceItemRenderer(new ResourceStack(Ice, (MyFixedPoint)12000.225)).Render(ctx));
+      Assert.AreEqual("Gold      (||||......)   5021.59 ", new ResourceItemRenderer(new ResourceStack(Gold, (MyFixedPoint)5021.59)).Render(ctx));
+      Assert.AreEqual("Ice       (..........)     77.1  ", new ResourceItemRenderer(new ResourceStack(Ice, (MyFixedPoint)77.1)).Render(ctx));
+      Assert.AreEqual("Magnesium (|.........)   1034    ", new ResourceItemRenderer(new ResourceStack(Magnesium, 1034)).Render(ctx));
     }
 
     [TestMethod]
@@ -52,7 +52,7 @@ namespace IngameScript
       ResourceRendererContext ctx = new ResourceRendererContext();
       ctx.MaxAmount = (MyFixedPoint)100000;
       ctx.AmountDecimalDigits = 0;
-      Assert.AreEqual("Silver     (||||||)     100000", new ResourceItemRenderer(new Resource(Silver, (MyFixedPoint)100000)).Render(ctx));
+      Assert.AreEqual("Silver     (||||||)     100000", new ResourceItemRenderer(new ResourceStack(Silver, (MyFixedPoint)100000)).Render(ctx));
     }
 
     [TestMethod]
@@ -67,8 +67,8 @@ namespace IngameScript
       ctx.AmountDecimalDigits = 2;
       ResourceListRenderer display = new ResourceListRenderer(ctx);
       string result = display.Render(new ResourceItemRenderer[] {
-        new ResourceItemRenderer(new Resource(Ice, (MyFixedPoint)5000)),
-        new ResourceItemRenderer(new Resource(MagnesiumIngot, (MyFixedPoint)1334.44))
+        new ResourceItemRenderer(new ResourceStack(Ice, (MyFixedPoint)5000)),
+        new ResourceItemRenderer(new ResourceStack(MagnesiumIngot, (MyFixedPoint)1334.44))
       });
       string expected =
         "[Resources -]" + NL +
